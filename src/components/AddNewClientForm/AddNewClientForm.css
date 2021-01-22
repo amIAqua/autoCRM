@@ -1,0 +1,36 @@
+.form-container {
+  width: 400px;
+  margin: 0px auto;
+}
+
+.form-container Input {
+  margin-bottom: 5px;
+}
+
+.form-container section {
+  margin-bottom: 10px;
+  width: 500px;
+}
+.form-container TextArea {
+  margin-bottom: 5px;
+}
+
+.owner-info-form-section {
+  border: 1px solid #000;
+}
+
+.auto-info-form-section {
+  border: 1px solid #000;
+}
+
+.problems-info-form-section {
+  border: 1px solid #000;
+}
+
+.result-info-form-section {
+  border: 1px solid #000;
+}
+
+.navigate-info-form-section {
+  border: 1px solid #000;
+}

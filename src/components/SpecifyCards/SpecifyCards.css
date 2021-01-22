@@ -1,0 +1,17 @@
+.specify-cards-container {
+  margin-top: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.specify-link {
+  display: block;
+  width: 100%;
+  color: #000;
+}
+
+.card-badge {
+  padding-top: 5px;
+  padding-right: 5px;
+}

@@ -1,0 +1,11 @@
+.details-case-card {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  margin-top: 20px;
+  width: 700px;
+  padding: 5px;
+}
+
+.card-row {
+  margin-bottom: 5px;
+}

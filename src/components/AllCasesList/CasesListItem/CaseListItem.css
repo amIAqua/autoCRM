@@ -1,0 +1,7 @@
+.case-card {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  margin-top: 20px;
+
+  padding: 5px;
+}

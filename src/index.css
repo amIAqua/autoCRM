@@ -1,0 +1,13 @@
+/* imports */
+@import './components/SpecifyCards/SpecifyCards.css';
+@import './components/AddNewClientForm/AddNewClientForm.css';
+@import './components/AllCasesList/CasesListItem/CaseListItem.css';
+@import './components/DetailCaseCard/DetailCaseCard.css';
+@import './components/Loader/Loader.css';
+
+.container {
+  width: 1140px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+}
