@@ -15,7 +15,7 @@ export const App: React.FC = () => {
   return (
     <div className='main-layout'>
       <Navbar />
-      <div className='Router'>
+      <div className='Router container'>
         <Switch>
           <Route component={SpecifyLayout} path='/specify' exact />
           <Route component={NewClientLayout} path='/new' />

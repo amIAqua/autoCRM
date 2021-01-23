@@ -3,6 +3,7 @@ import { InferActionsTypes } from '../../store'
 
 const initialState = {
   isLoading: false as boolean,
+  isFetching: false,
 }
 
 type initialStateType = typeof initialState
@@ -22,6 +23,7 @@ export const appReducer = (
         ...state,
         isLoading: false,
       }
+
     default:
       return state
   }

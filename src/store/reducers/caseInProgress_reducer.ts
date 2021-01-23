@@ -1,7 +1,11 @@
 import { ThunkAction } from 'redux-thunk'
 import { RootAppState } from '../../store'
 import { casesInProgressAPI } from '../api/cases-in-progress-api'
-import { findCaseInListHelper } from '../../utils/helpers'
+import {
+  findCaseInListHelper,
+  initializeLoading,
+  stopLoading,
+} from '../../utils/helpers'
 import { allCasesListType, caseType } from '../types/casesReducer.types'
 import { ActionsTypes } from '../types/rootActionsType'
 
@@ -97,7 +101,10 @@ export const completeCase = (_id: string): ThunkType => async (
 }
 
 export const getAllCompletedCases = (): ThunkType => async (dispatch) => {
+  initializeLoading(dispatch)
   const completedCasesList = await casesInProgressAPI.getAllCompletedCases()
 
   dispatch(actions.setAllCompletedCasesList(completedCasesList))
+
+  stopLoading(dispatch)
 }

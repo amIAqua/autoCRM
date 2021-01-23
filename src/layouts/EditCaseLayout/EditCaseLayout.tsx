@@ -30,7 +30,7 @@ export const EditCaseLayout: React.FC<Props> = ({ match }) => {
   }, [])
 
   return (
-    <div className='container'>
+    <div>
       {currentEditedCase._id ? (
         <EditCurrentCaseForm currentCase={currentEditedCase} />
       ) : null}

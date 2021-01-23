@@ -9,10 +9,12 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import { InputComponent, TextAreaComponent } from '../FormFields/form-fields'
+import { useMessages } from '../../utils/useMessages'
 
 export const AddNewClientForm: React.FC = () => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const { successMessage } = useMessages()
   return (
     <div className='form-container'>
       <Formik
@@ -37,6 +39,7 @@ export const AddNewClientForm: React.FC = () => {
 
           setTimeout(() => {
             history.push('/specify')
+            successMessage('Заявка была создана успешно')
           }, 500)
         }}
       >

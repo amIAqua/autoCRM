@@ -7,6 +7,7 @@ import { Loader } from '../../components/Loader/Loader'
 import { NothingWasFetched } from '../../components/NothingWasFetched/NothingWasFetched'
 import { AllCasesList } from '../../components/AllCasesList/AllCasesList'
 import { getAllCases } from '../../store/reducers/case_Reducer'
+import { ListLength } from '../../components/ListLength/ListLength'
 
 export const CasesInProgressLayout: React.FC = () => {
   const loading = useSelector((state: RootAppState) => loadingSelector(state))
@@ -19,11 +20,13 @@ export const CasesInProgressLayout: React.FC = () => {
     dispatch(getAllCases())
   }, [])
 
-  if (!casesInProgressList.length) return <NothingWasFetched />
+  if (!casesInProgressList.length && !loading) return <NothingWasFetched />
 
   return (
     <div>
-      <div className='container'>
+      <div className='content-section'>
+        {loading ? null : <ListLength length={casesInProgressList.length} />}
+
         {loading ? <Loader /> : <AllCasesList allCases={casesInProgressList} />}
       </div>
     </div>

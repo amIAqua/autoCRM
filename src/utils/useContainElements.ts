@@ -12,13 +12,11 @@ import {
 export const useContainElements = () => {
   const dispatch = useDispatch()
 
-  const allCasesLength = useSelector((state: RootAppState) =>
-    casesSelector(state)
-  )
-  const allCasesInProgressLength = useSelector((state: RootAppState) =>
+  const cases = useSelector((state: RootAppState) => casesSelector(state))
+  const inProgress = useSelector((state: RootAppState) =>
     casesInProgressSelector(state)
   )
-  const allCompletedCasesLength = useSelector((state: RootAppState) =>
+  const completed = useSelector((state: RootAppState) =>
     completedCasesSelector(state)
   )
 
@@ -27,5 +25,5 @@ export const useContainElements = () => {
     dispatch(getAllCompletedCases())
   }, [])
 
-  return { allCasesLength, allCasesInProgressLength, allCompletedCasesLength }
+  return { cases, inProgress, completed }
 }

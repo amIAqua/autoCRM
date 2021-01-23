@@ -1,10 +1,13 @@
 import React from 'react'
 import { SpecifyCards } from '../../components/SpecifyCards/SpecifyCards'
+import { useContainElements } from '../../utils/useContainElements'
 
 export const SpecifyLayout: React.FC = () => {
+  const contain = useContainElements()
+
   return (
-    <div className='container'>
-      <SpecifyCards />
+    <div>
+      <SpecifyCards contain={contain} />
     </div>
   )
 }

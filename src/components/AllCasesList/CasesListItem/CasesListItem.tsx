@@ -18,7 +18,6 @@ export const CasesListItem: React.FC<Props> = ({ item }) => {
           </Descriptions.Item>
           <Descriptions.Item label='Дата оформления заявки'>
             <b>{item.navigation.createdDate}</b>
-            {item.completed ? <b>{item.navigation.completedDate}</b> : null}
           </Descriptions.Item>
 
           {item.completed ? (

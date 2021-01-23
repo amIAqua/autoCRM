@@ -11,6 +11,7 @@ import {
 import { useHistory } from 'react-router-dom'
 
 import { InputComponent, TextAreaComponent } from '../FormFields/form-fields'
+import { useMessages } from '../../utils/useMessages'
 
 type Props = {
   currentCase: caseType
@@ -19,6 +20,7 @@ type Props = {
 export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  const { successMessage } = useMessages()
   return (
     <div className='form-container'>
       <Formik
@@ -42,6 +44,7 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
           setSubmitting(false)
 
           history.push(`/cases/${currentCase._id}`)
+          successMessage('Заявка была отредактирована успешно')
         }}
       >
         {({

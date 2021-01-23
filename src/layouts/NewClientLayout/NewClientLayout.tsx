@@ -3,7 +3,7 @@ import { AddNewClientForm } from '../../components/AddNewClientForm/AddNewClient
 
 export const NewClientLayout: React.FC = () => {
   return (
-    <div className='container'>
+    <div>
       <AddNewClientForm />
     </div>
   )

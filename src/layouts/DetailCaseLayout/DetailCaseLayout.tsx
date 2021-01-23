@@ -10,6 +10,7 @@ import {
   takeCaseInProgress,
   completeCase,
 } from '../../store/reducers/caseInProgress_reducer'
+import { useMessages } from '../../utils/useMessages'
 
 type queryParams = {
   _id: string
@@ -24,6 +25,8 @@ export const DetailCaseLayout: React.FC<Props> = ({ match }) => {
     currentCaseSelector(state)
   )
   const loading = useSelector((state: RootAppState) => loadingSelector(state))
+  const { successMessage } = useMessages()
+
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -41,6 +44,7 @@ export const DetailCaseLayout: React.FC<Props> = ({ match }) => {
 
     setTimeout(() => {
       returnRoute('/specify')
+      successMessage('Заявка была удалена успешно')
     }, 500)
   }
 
@@ -49,6 +53,7 @@ export const DetailCaseLayout: React.FC<Props> = ({ match }) => {
 
     setTimeout(() => {
       returnRoute('/specify')
+      successMessage('Заявка переведена в статус выполнения')
     }, 500)
   }
 
@@ -57,11 +62,12 @@ export const DetailCaseLayout: React.FC<Props> = ({ match }) => {
 
     setTimeout(() => {
       returnRoute('/specify')
+      successMessage('Заявка переведена в статус выполненных')
     }, 500)
   }
 
   return (
-    <div className='container'>
+    <div>
       {loading ? (
         <Loader />
       ) : (
