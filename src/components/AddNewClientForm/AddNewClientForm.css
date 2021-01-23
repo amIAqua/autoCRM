@@ -1,6 +1,8 @@
 .form-container {
-  width: 400px;
-  margin: 0px auto;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 10px;
+  border-radius: 10px;
 }
 
 .form-container Input {
@@ -13,24 +15,4 @@
 }
 .form-container TextArea {
   margin-bottom: 5px;
-}
-
-.owner-info-form-section {
-  border: 1px solid #000;
-}
-
-.auto-info-form-section {
-  border: 1px solid #000;
-}
-
-.problems-info-form-section {
-  border: 1px solid #000;
-}
-
-.result-info-form-section {
-  border: 1px solid #000;
-}
-
-.navigate-info-form-section {
-  border: 1px solid #000;
 }

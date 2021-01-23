@@ -1,5 +1,4 @@
 import { ActionsTypes } from '../types/rootActionsType'
-import { InferActionsTypes } from '../../store'
 
 const initialState = {
   isLoading: false as boolean,

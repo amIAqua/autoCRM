@@ -176,7 +176,14 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
               />
             </section>
 
-            <Button htmlType='submit' type='primary' disabled={isSubmitting}>
+            <Button
+              htmlType='submit'
+              type='primary'
+              disabled={isSubmitting}
+              className='button'
+              size='large'
+              style={{ marginTop: '20px' }}
+            >
               Сохранить
             </Button>
           </form>

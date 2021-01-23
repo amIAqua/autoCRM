@@ -30,7 +30,13 @@ export const CasesListItem: React.FC<Props> = ({ item }) => {
       </div>
 
       <NavLink to={`cases/${item._id}`}>
-        <Button type='primary'>Подробнее</Button>
+        <Button
+          className='button'
+          type='primary'
+          style={{ marginBottom: '10px' }}
+        >
+          Подробнее
+        </Button>
       </NavLink>
     </div>
   )

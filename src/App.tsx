@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, useLocation } from 'react-router-dom'
 
 //components
 import { SpecifyLayout } from './layouts/SpecifyLayout/SpecifyLayout'
@@ -10,11 +10,19 @@ import { EditCaseLayout } from './layouts/EditCaseLayout/EditCaseLayout'
 import { CasesInProgressLayout } from './layouts/CasesInProgress/CasesInProgressLayout'
 import { CompletedCasesLayout } from './layouts/CompletedCasesLayout/CompletedCasesLayout'
 import { Navbar } from './components/Navbar/Navbar'
+import { Loader } from './components/Loader/Loader'
+import { useSelector } from 'react-redux'
+import { RootAppState } from './store'
+import { loadingSelector } from './store/selectors'
 
 export const App: React.FC = () => {
+  const loading = useSelector((state: RootAppState) => loadingSelector(state))
+  const location = useLocation()
+
   return (
     <div className='main-layout'>
       <Navbar />
+      {loading && location.pathname === '/specify' ? <Loader /> : null}
       <div className='Router container'>
         <Switch>
           <Route component={SpecifyLayout} path='/specify' exact />

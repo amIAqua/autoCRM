@@ -166,10 +166,16 @@ export const AddNewClientForm: React.FC = () => {
               </Checkbox>
             </div>
 
-            <Button htmlType='submit' type='primary' disabled={isSubmitting}>
+            <Button
+              htmlType='submit'
+              className='button'
+              type='primary'
+              size='large'
+              disabled={isSubmitting}
+              style={{ marginTop: '20px' }}
+            >
               Добавить
             </Button>
-            <Button type='default'>Удалить</Button>
           </form>
         )}
       </Formik>

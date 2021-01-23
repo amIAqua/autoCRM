@@ -83,15 +83,24 @@ export const DetailCaseCard: React.FC<Props> = ({
 
         <Divider />
         <Link to={`edit/${item._id}`}>
-          <Button type='primary' style={{ marginRight: '10px' }}>
+          <Button
+            className='button'
+            type='primary'
+            style={{ marginRight: '10px' }}
+          >
             Редактировать
           </Button>
         </Link>
 
         {!item.inProgress && !item.completed ? (
           <Button
+            className='button'
             type='primary'
-            style={{ marginRight: '10px' }}
+            style={{
+              marginRight: '10px',
+              background: '#08c434',
+              border: '1px solid #08c434',
+            }}
             onClick={() => takeInProgressHandler(item._id!)}
           >
             Начать выполнение
@@ -99,6 +108,7 @@ export const DetailCaseCard: React.FC<Props> = ({
         ) : null}
         {item.inProgress && !item.completed ? (
           <Button
+            className='button'
             type='primary'
             style={{ marginRight: '10px' }}
             onClick={() => completeCaseHandler(item._id!)}
@@ -109,8 +119,13 @@ export const DetailCaseCard: React.FC<Props> = ({
 
         {item.completed || !item.inProgress ? (
           <Button
+            className='button'
             type='primary'
-            style={{ marginRight: '10px' }}
+            style={{
+              marginRight: '10px',
+              background: 'red',
+              border: '1px solid red',
+            }}
             onClick={() => deleteItemHandler(item._id!)}
           >
             Удалить
