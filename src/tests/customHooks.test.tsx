@@ -1,17 +1,11 @@
-import { allCasesListType } from '../store/types/casesReducer.types'
+import { renderHook } from '@testing-library/react-hooks'
 import { useContainElements } from '../utils/useContainElements'
 import { useMessages } from '../utils/useMessages'
 
 describe('useContainElements', () => {
-  let cases: allCasesListType = []
-  let inProgress: allCasesListType = []
-  let completed: allCasesListType = []
-
   it('should be defined', () => {
     expect(useContainElements).toBeDefined()
   })
-
-  it('should return correct values', () => {})
 })
 
 describe('useMessages', () => {
@@ -19,7 +13,13 @@ describe('useMessages', () => {
     expect(useMessages).toBeDefined()
   })
 
-  it('should return correct values', () => {})
+  it('hook methods should be defined', () => {
+    const { result } = renderHook(() => useMessages())
+
+    expect(result.current.successMessage).toBeDefined()
+    expect(result.current.warningMessage).toBeDefined()
+    expect(result.current.errorMessage).toBeDefined()
+  })
 })
 
 export {}

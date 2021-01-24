@@ -10,7 +10,7 @@ import {
 } from '../../utils/helpers'
 import { actions as caseInProgressActions } from '../reducers/caseInProgress_reducer'
 
-const initialState = {
+export const initialState = {
   newCase: {
     ownerInfo: {
       name: '',

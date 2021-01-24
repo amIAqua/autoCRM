@@ -1,5 +1,15 @@
+import { Dispatch } from 'react'
+import { act } from 'react-dom/test-utils'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootAppState } from '../store'
+import { loadingSelector } from '../store/selectors'
 import { allCasesListType, caseType } from '../store/types/casesReducer.types'
-import { findCaseInListHelper, getDate, separateCases } from '../utils/helpers'
+import {
+  findCaseInListHelper,
+  getDate,
+  initializeLoading,
+  separateCases,
+} from '../utils/helpers'
 import { getFullName } from '../utils/name_utils'
 
 describe('helper functions tests', () => {
