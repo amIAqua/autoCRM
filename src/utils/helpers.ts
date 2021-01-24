@@ -3,11 +3,6 @@ import { Action } from 'redux'
 import { actions as appActions } from '../store/reducers/app_Reducer'
 import { allCasesListType, caseType } from '../store/types/casesReducer.types'
 
-export const checkCurrentCaseStatus = (
-  currentUserId: string,
-  paramsId: string
-): boolean => currentUserId === paramsId
-
 // dispatch returner
 export const initializeLoading = (dispatch: Dispatch<Action>) =>
   dispatch(appActions.setLoadingStatus())
