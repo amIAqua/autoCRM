@@ -1,6 +1,6 @@
 import { ActionsTypes } from '../types/rootActionsType'
 
-const initialState = {
+export const initialState = {
   isLoading: false as boolean,
   isFetching: false,
 }

@@ -9,7 +9,7 @@ import {
 import { allCasesListType, caseType } from '../types/casesReducer.types'
 import { ActionsTypes } from '../types/rootActionsType'
 
-const initialState = {
+export const initialState = {
   allCasesInProgressList: [] as allCasesListType,
   completedCases: [] as allCasesListType,
 }
