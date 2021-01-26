@@ -1,6 +1,8 @@
 import { Dispatch } from 'react'
 import { Action } from 'redux'
 import { actions as appActions } from '../store/reducers/app_Reducer'
+import { actions as errorActions } from '../store/reducers/error_Reducer'
+
 import { allCasesListType, caseType } from '../store/types/casesReducer.types'
 
 export const checkCurrentCaseStatus = (currentCaseId: string, _id: string) =>
@@ -12,6 +14,9 @@ export const initializeLoading = (dispatch: Dispatch<Action>) =>
 
 export const stopLoading = (dispatch: Dispatch<Action>) =>
   dispatch(appActions.removeLoadingStatus())
+
+export const clearError = (dispatch: Dispatch<Action>) =>
+  dispatch(errorActions.clearError())
 
 // cases in progress helpers
 export const findCaseInListHelper = (

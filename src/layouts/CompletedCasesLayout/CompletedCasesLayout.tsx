@@ -7,11 +7,19 @@ import { NothingWasFetched } from '../../components/NothingWasFetched/NothingWas
 
 import { RootAppState } from '../../store'
 import { getAllCompletedCases } from '../../store/reducers/caseInProgress_reducer'
-import { completedCasesSelector, loadingSelector } from '../../store/selectors'
+import {
+  completedCasesSelector,
+  errorsSelector,
+  loadingSelector,
+} from '../../store/selectors'
 import { allCasesListType } from '../../store/types/casesReducer.types'
+import { clearError } from '../../utils/helpers'
+import { useMessages } from '../../utils/useMessages'
 
 export const CompletedCasesLayout: React.FC = () => {
   const loading = useSelector((state: RootAppState) => loadingSelector(state))
+  const error = useSelector((state: RootAppState) => errorsSelector(state))
+  const { errorMessage } = useMessages()
   const completedCasesList: allCasesListType = useSelector(
     (state: RootAppState) => completedCasesSelector(state)
   )
@@ -19,7 +27,14 @@ export const CompletedCasesLayout: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(getAllCompletedCases())
+
+    if (error) {
+      errorMessage(error.message)
+    }
+    return () => clearError(dispatch)
   }, [])
+
+  if (error) return <NothingWasFetched />
 
   if (!completedCasesList.length && !loading) return <NothingWasFetched />
 

@@ -1,12 +1,16 @@
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import moxios from 'moxios'
 import {
   actions,
   caseReducer,
-  initialState,
+  getAllCases,
 } from '../../store/reducers/case_Reducer'
 import {
   allCasesListType,
   caseType,
 } from '../../store/types/casesReducer.types'
+import { mockInitialState, mockReturnedCasesList } from './mockData'
 
 let currentCase: caseType = {
   ownerInfo: {
@@ -82,5 +86,9 @@ describe('case reducer actions work correctly', () => {
     expect(actions.deleteCase(_id)).toEqual(expectedAction)
   })
 })
+
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
+const initialState = mockInitialState
 
 export {}

@@ -2,7 +2,11 @@ import React from 'react'
 import { match, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { DetailCaseCard } from '../../components/DetailCaseCard/DetailCaseCard'
-import { currentCaseSelector, loadingSelector } from '../../store/selectors'
+import {
+  currentCaseSelector,
+  errorsSelector,
+  loadingSelector,
+} from '../../store/selectors'
 import { RootAppState } from '../../store'
 import { deleteCase, getCaseDetails } from '../../store/reducers/case_Reducer'
 import { Loader } from '../../components/Loader/Loader'
@@ -11,6 +15,8 @@ import {
   completeCase,
 } from '../../store/reducers/caseInProgress_reducer'
 import { useMessages } from '../../utils/useMessages'
+import { clearError, stopLoading } from '../../utils/helpers'
+import { NothingWasFetched } from '../../components/NothingWasFetched/NothingWasFetched'
 
 type queryParams = {
   _id: string
@@ -25,7 +31,8 @@ export const DetailCaseLayout: React.FC<Props> = ({ match }) => {
     currentCaseSelector(state)
   )
   const loading = useSelector((state: RootAppState) => loadingSelector(state))
-  const { successMessage } = useMessages()
+  const error = useSelector((state: RootAppState) => errorsSelector(state))
+  const { successMessage, errorMessage } = useMessages()
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -36,6 +43,14 @@ export const DetailCaseLayout: React.FC<Props> = ({ match }) => {
   React.useEffect((): any => {
     dispatch(getCaseDetails(_id))
   }, [dispatch, _id])
+
+  React.useEffect(() => {
+    if (error) {
+      stopLoading(dispatch)
+      errorMessage(error.message)
+    }
+    return () => clearError(dispatch)
+  }, [error])
 
   const returnRoute = (route: string) => history.push(route)
 

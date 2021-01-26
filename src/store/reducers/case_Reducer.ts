@@ -9,6 +9,7 @@ import {
   separateCases,
 } from '../../utils/helpers'
 import { actions as caseInProgressActions } from '../reducers/caseInProgress_reducer'
+import { actions as errorActions } from '../reducers/error_Reducer'
 
 export const initialState = {
   newCase: {
@@ -110,50 +111,96 @@ export const actions = {
 export const addNewCase = (newCase: caseType): ThunkType => async (
   dispatch
 ) => {
-  await caseAPI.addCase(newCase)
+  try {
+    await caseAPI.addCase(newCase)
+  } catch (error) {
+    dispatch(
+      errorActions.setError({
+        code: 1,
+        message: 'Что-то пошло не так...',
+      })
+    )
+  }
 }
 
 export const getAllCases = (): ThunkType => async (dispatch) => {
-  initializeLoading(dispatch)
-  const allCasesList: allCasesListType = await caseAPI.getAllCases()
+  try {
+    initializeLoading(dispatch)
+    const allCasesList: allCasesListType = await caseAPI.getAllCases()
 
-  const { notProgressedCasesList, casesInProgressList } = separateCases(
-    allCasesList
-  )
+    const { notProgressedCasesList, casesInProgressList } = separateCases(
+      allCasesList
+    )
 
-  dispatch(caseInProgressActions.setAllCasesInProgressList(casesInProgressList))
-  dispatch(actions.setAllCasesList(notProgressedCasesList))
+    dispatch(
+      caseInProgressActions.setAllCasesInProgressList(casesInProgressList)
+    )
+    dispatch(actions.setAllCasesList(notProgressedCasesList))
 
-  stopLoading(dispatch)
+    stopLoading(dispatch)
+  } catch (error) {
+    dispatch(
+      errorActions.setError({
+        code: 1,
+        message: 'Не удалось загрузить список заявок...',
+      })
+    )
+  }
 }
 
 export const getCaseDetails = (_id: string): ThunkType => async (dispatch) => {
-  initializeLoading(dispatch)
+  try {
+    initializeLoading(dispatch)
 
-  const currentCase = await caseAPI.getCurrentCase(_id)
+    const currentCase = await caseAPI.getCurrentCase(_id)
 
-  dispatch(actions.setCurrentCase(currentCase!))
+    dispatch(actions.setCurrentCase(currentCase!))
 
-  stopLoading(dispatch)
+    stopLoading(dispatch)
+  } catch (error) {
+    dispatch(
+      errorActions.setError({
+        code: 1,
+        message: 'Не удалось загрузить детали заявки...',
+      })
+    )
+  }
 }
 
 export const editCurrentCase = (
   editedCase: caseType,
   _id: string
 ): ThunkType => async (dispatch) => {
-  initializeLoading(dispatch)
+  try {
+    initializeLoading(dispatch)
 
-  const savedEditedCase = await caseAPI.editCurrentCase(editedCase, _id)
+    const savedEditedCase = await caseAPI.editCurrentCase(editedCase, _id)
 
-  stopLoading(dispatch)
+    stopLoading(dispatch)
 
-  dispatch(actions.setCurrentCase(savedEditedCase))
-
-  dispatch(getCaseDetails(_id))
+    dispatch(actions.setCurrentCase(savedEditedCase))
+    dispatch(getCaseDetails(_id))
+  } catch (error) {
+    dispatch(
+      errorActions.setError({
+        code: 1,
+        message: 'Не удалось редактировать заявку...',
+      })
+    )
+  }
 }
 
 export const deleteCase = (_id: string): ThunkType => async (dispatch) => {
-  await caseAPI.deleteCase(_id)
+  try {
+    await caseAPI.deleteCase(_id)
 
-  dispatch(actions.deleteCase(_id))
+    dispatch(actions.deleteCase(_id))
+  } catch (error) {
+    dispatch(
+      errorActions.setError({
+        code: 1,
+        message: 'Не удалось удалить заявку...',
+      })
+    )
+  }
 }

@@ -1,20 +1,15 @@
 import React from 'react'
 import { initialValues } from './case-form-config'
-import { addNewCase } from '../../store/reducers/case_Reducer'
 import { caseType } from '../../store/types/casesReducer.types'
-import { Formik, FormikErrors, FormikHelpers, Field, FormikProps } from 'formik'
-import { Input, Button, Checkbox } from 'antd'
-import TextArea from 'antd/lib/input/TextArea'
-import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { Formik, FormikErrors, FormikHelpers, Field } from 'formik'
+import { Button, Checkbox } from 'antd'
 
 import { InputComponent, TextAreaComponent } from '../FormFields/form-fields'
-import { useMessages } from '../../utils/useMessages'
+import { useNewCase } from '../../utils/useNewCase'
 
 export const AddNewClientForm: React.FC = () => {
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const { successMessage } = useMessages()
+  const { addNewCaseHandler } = useNewCase()
+
   return (
     <div className='form-container'>
       <Formik
@@ -34,13 +29,9 @@ export const AddNewClientForm: React.FC = () => {
           values: caseType,
           { setSubmitting }: FormikHelpers<caseType>
         ) => {
-          dispatch(addNewCase(values))
-          setSubmitting(false)
+          addNewCaseHandler(values)
 
-          setTimeout(() => {
-            history.push('/specify')
-            successMessage('Заявка была создана успешно')
-          }, 500)
+          setSubmitting(false)
         }}
       >
         {({
