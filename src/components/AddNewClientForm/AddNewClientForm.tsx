@@ -3,7 +3,6 @@ import { initialValues } from './case-form-config'
 import { caseType } from '../../store/types/casesReducer.types'
 import { Formik, FormikErrors, FormikHelpers, Field } from 'formik'
 import { Button, Checkbox } from 'antd'
-
 import { InputComponent, TextAreaComponent } from '../FormFields/form-fields'
 import { useNewCase } from '../../utils/useNewCase'
 
@@ -39,10 +38,8 @@ export const AddNewClientForm: React.FC = () => {
           touched,
           errors,
           handleChange,
-          handleBlur,
           handleSubmit,
           isSubmitting,
-          /* and other goodies */
         }) => (
           <form onSubmit={handleSubmit}>
             <section className='owner-info-form-section'>
@@ -53,7 +50,6 @@ export const AddNewClientForm: React.FC = () => {
                 placeholder='Имя'
                 component={InputComponent}
               />
-
               {errors.ownerInfo?.name && touched.ownerInfo?.name}
               <Field
                 name='ownerInfo.surname'

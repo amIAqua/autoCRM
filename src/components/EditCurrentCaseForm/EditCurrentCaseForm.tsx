@@ -4,13 +4,9 @@ import { Formik, FormikHelpers, Field, FormikErrors } from 'formik'
 import { Input, Button } from 'antd'
 import TextArea from 'antd/lib/input/TextArea'
 import { useDispatch } from 'react-redux'
-import {
-  editCurrentCase,
-  getCaseDetails,
-} from '../../store/reducers/case_Reducer'
+import { editCurrentCase } from '../../store/reducers/case_Reducer'
 import { useHistory } from 'react-router-dom'
-
-import { InputComponent, TextAreaComponent } from '../FormFields/form-fields'
+import { InputComponent } from '../FormFields/form-fields'
 import { useMessages } from '../../utils/useMessages'
 
 type Props = {

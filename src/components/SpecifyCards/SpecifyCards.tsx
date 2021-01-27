@@ -1,10 +1,9 @@
-import React, { CSSProperties } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Badge } from 'antd'
-import { useContainElements } from '../../utils/useContainElements'
 import { allCasesListType } from '../../store/types/casesReducer.types'
 
-const gridStyle: CSSProperties = {
+const gridStyle: React.CSSProperties = {
   width: '25%',
   textAlign: 'center',
   fontWeight: 'bold',

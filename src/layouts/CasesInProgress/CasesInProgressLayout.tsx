@@ -2,27 +2,26 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootAppState } from '../../store'
 import { allCasesListType } from '../../store/types/casesReducer.types'
+import { getAllCasesInProgress } from '../../store/reducers/caseInProgress_reducer'
+import { Loader } from '../../components/Loader/Loader'
+import { NothingWasFetched } from '../../components/NothingWasFetched/NothingWasFetched'
+import { AllCasesList } from '../../components/AllCasesList/AllCasesList'
+import { ListLength } from '../../components/ListLength/ListLength'
+import { useMessages } from '../../utils/useMessages'
+import { clearError } from '../../utils/helpers'
 import {
   casesInProgressSelector,
   errorsSelector,
   loadingSelector,
 } from '../../store/selectors'
-import { Loader } from '../../components/Loader/Loader'
-import { NothingWasFetched } from '../../components/NothingWasFetched/NothingWasFetched'
-import { AllCasesList } from '../../components/AllCasesList/AllCasesList'
-import { getAllCases } from '../../store/reducers/case_Reducer'
-import { ListLength } from '../../components/ListLength/ListLength'
-import { useMessages } from '../../utils/useMessages'
-import { clearError } from '../../utils/helpers'
-import { getAllCasesInProgress } from '../../store/reducers/caseInProgress_reducer'
 
 export const CasesInProgressLayout: React.FC = () => {
   const loading = useSelector((state: RootAppState) => loadingSelector(state))
   const error = useSelector((state: RootAppState) => errorsSelector(state))
-  const { errorMessage } = useMessages()
   const casesInProgressList: allCasesListType = useSelector(
     (state: RootAppState) => casesInProgressSelector(state)
   )
+  const { errorMessage } = useMessages()
   const dispatch = useDispatch()
 
   React.useEffect(() => {
@@ -41,6 +40,9 @@ export const CasesInProgressLayout: React.FC = () => {
   return (
     <div>
       <div className='content-section'>
+        {casesInProgressList && !loading ? (
+          <ListLength length={casesInProgressList.length} />
+        ) : null}
         {loading ? <Loader /> : <AllCasesList allCases={casesInProgressList} />}
       </div>
     </div>
