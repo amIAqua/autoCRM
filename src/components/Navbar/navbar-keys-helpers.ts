@@ -6,6 +6,7 @@ type Key = {
 
 export const items: Array<Key> = [
   { key: '1', label: 'Управление заявками', path: '/specify' },
+  { key: '2', label: 'Прайс-лист', path: '/prices' },
 ]
 
 export const findSelectedKey = (items: Array<Key>, location: Location) =>

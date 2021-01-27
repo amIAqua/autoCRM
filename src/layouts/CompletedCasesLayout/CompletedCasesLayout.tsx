@@ -6,7 +6,7 @@ import { ListLength } from '../../components/ListLength/ListLength'
 import { NothingWasFetched } from '../../components/NothingWasFetched/NothingWasFetched'
 
 import { RootAppState } from '../../store'
-import { getAllCompletedCases } from '../../store/reducers/caseInProgress_reducer'
+import { getAllCompletedCases } from '../../store/reducers/completedCase_Reducer'
 import {
   completedCasesSelector,
   errorsSelector,

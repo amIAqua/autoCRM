@@ -14,6 +14,7 @@ import { getAllCases } from '../../store/reducers/case_Reducer'
 import { ListLength } from '../../components/ListLength/ListLength'
 import { useMessages } from '../../utils/useMessages'
 import { clearError } from '../../utils/helpers'
+import { getAllCasesInProgress } from '../../store/reducers/caseInProgress_reducer'
 
 export const CasesInProgressLayout: React.FC = () => {
   const loading = useSelector((state: RootAppState) => loadingSelector(state))
@@ -25,7 +26,7 @@ export const CasesInProgressLayout: React.FC = () => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    dispatch(getAllCases())
+    dispatch(getAllCasesInProgress())
 
     if (error) {
       errorMessage(error.message)
@@ -40,8 +41,6 @@ export const CasesInProgressLayout: React.FC = () => {
   return (
     <div>
       <div className='content-section'>
-        {loading ? null : <ListLength length={casesInProgressList.length} />}
-
         {loading ? <Loader /> : <AllCasesList allCases={casesInProgressList} />}
       </div>
     </div>

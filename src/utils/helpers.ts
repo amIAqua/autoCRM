@@ -30,6 +30,7 @@ export const findCaseInListHelper = (
 export const separateCases = (allCasesList: allCasesListType) => {
   const casesInProgressList: allCasesListType = []
   const notProgressedCasesList: allCasesListType = []
+  const completedCases: allCasesListType = []
 
   allCasesList.map((item: caseType) => {
     if (item.inProgress && !item.completed) {
@@ -39,9 +40,13 @@ export const separateCases = (allCasesList: allCasesListType) => {
     if (!item.completed && !item.inProgress) {
       notProgressedCasesList.push(item)
     }
+
+    if (item.completed && !item.inProgress) {
+      completedCases.push(item)
+    }
   })
 
-  return { casesInProgressList, notProgressedCasesList }
+  return { casesInProgressList, notProgressedCasesList, completedCases }
 }
 
 // date generator

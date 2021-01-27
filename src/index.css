@@ -4,6 +4,7 @@
 @import './components/AllCasesList/CasesListItem/CaseListItem.css';
 @import './components/DetailCaseCard/DetailCaseCard.css';
 @import './components/Loader/Loader.css';
+@import './components/PricesSearch/PricesSearch.css';
 
 .container {
   width: 1140px;

@@ -128,14 +128,7 @@ export const getAllCases = (): ThunkType => async (dispatch) => {
     initializeLoading(dispatch)
     const allCasesList: allCasesListType = await caseAPI.getAllCases()
 
-    const { notProgressedCasesList, casesInProgressList } = separateCases(
-      allCasesList
-    )
-
-    dispatch(
-      caseInProgressActions.setAllCasesInProgressList(casesInProgressList)
-    )
-    dispatch(actions.setAllCasesList(notProgressedCasesList))
+    dispatch(actions.setAllCasesList(allCasesList))
 
     stopLoading(dispatch)
   } catch (error) {

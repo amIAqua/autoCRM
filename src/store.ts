@@ -3,13 +3,17 @@ import thunkMiddleware from 'redux-thunk'
 import { caseReducer } from './store/reducers/case_Reducer'
 import { appReducer } from './store/reducers/app_Reducer'
 import { caseInProgressReducer } from './store/reducers/caseInProgress_reducer'
+import { completedCasesReducer } from './store/reducers/completedCase_Reducer'
 import { errorReducer } from './store/reducers/error_Reducer'
+import { pricesReducer } from './store/reducers/prices_Reducer'
 
 const rootReducer = combineReducers({
   caseReducer,
   appReducer,
   caseInProgressReducer,
+  completedCasesReducer,
   errorReducer,
+  pricesReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))

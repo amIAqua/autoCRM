@@ -10,10 +10,8 @@ import {
 import { RootAppState } from '../../store'
 import { deleteCase, getCaseDetails } from '../../store/reducers/case_Reducer'
 import { Loader } from '../../components/Loader/Loader'
-import {
-  takeCaseInProgress,
-  completeCase,
-} from '../../store/reducers/caseInProgress_reducer'
+import { takeCaseInProgress } from '../../store/reducers/caseInProgress_reducer'
+import { completeCase } from '../../store/reducers/completedCase_Reducer'
 import { useMessages } from '../../utils/useMessages'
 import { clearError, stopLoading } from '../../utils/helpers'
 import { NothingWasFetched } from '../../components/NothingWasFetched/NothingWasFetched'

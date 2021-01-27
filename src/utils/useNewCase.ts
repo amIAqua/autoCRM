@@ -5,6 +5,7 @@ import { RootAppState } from '../store'
 import { addNewCase } from '../store/reducers/case_Reducer'
 import { errorsSelector } from '../store/selectors'
 import { caseType } from '../store/types/casesReducer.types'
+import { clearError } from './helpers'
 import { useMessages } from './useMessages'
 
 export const useNewCase = () => {
@@ -18,8 +19,15 @@ export const useNewCase = () => {
   }
 
   React.useEffect(() => {
+    if (error) {
+      errorMessage(error.message)
+      return
+    }
+
+    return () => clearError(dispatch)
+
     // TODO: set errors
-  }, [error])
+  }, [error, dispatch])
 
   return { addNewCaseHandler }
 }

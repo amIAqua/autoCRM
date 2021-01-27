@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Card, Col, Divider, Row } from 'antd'
+import { ArrowRightOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { caseType } from '../../store/types/casesReducer.types'
 
@@ -132,7 +133,16 @@ export const DetailCaseCard: React.FC<Props> = ({
           </Button>
         ) : null}
 
-        {item.completed ? <Button type='primary'>Распечатать</Button> : null}
+        {item.completed ? (
+          <Button
+            style={{ marginLeft: '250px' }}
+            className='button'
+            type='primary'
+            icon={<ArrowRightOutlined />}
+          >
+            Составить смету
+          </Button>
+        ) : null}
       </Card>
     </div>
   )

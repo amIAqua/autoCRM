@@ -4,6 +4,8 @@ const caseSelector = (state: RootAppState) => state.caseReducer
 const appSelector = (state: RootAppState) => state.appReducer
 const caseInProgressSelector = (state: RootAppState) =>
   state.caseInProgressReducer
+const completedCaseSelector = (state: RootAppState) =>
+  state.completedCasesReducer
 const errorSelector = (state: RootAppState) => state.errorReducer
 
 // cases selectors
@@ -19,7 +21,7 @@ export const casesInProgressSelector = (state: RootAppState) =>
 
 // completed cases selectors
 export const completedCasesSelector = (state: RootAppState) =>
-  caseInProgressSelector(state).completedCases
+  completedCaseSelector(state).completedCases
 
 // loading selector
 export const loadingSelector = (state: RootAppState) =>

@@ -38,19 +38,6 @@ export const caseInProgressReducer = (
           action.payload,
         ],
       }
-    case 'acrm/cases/COMPLETE_CASE':
-      return {
-        ...state,
-        allCasesInProgressList: state.allCasesInProgressList.filter(
-          (item: caseType) => item._id !== action.payload._id
-        ),
-        completedCases: [action.payload.completedCase, ...state.completedCases],
-      }
-    case 'acrm/cases/SET_ALL_COMPLETED_CASES_LIST':
-      return {
-        ...state,
-        completedCases: action.payload,
-      }
     default:
       return state
   }
@@ -67,16 +54,24 @@ export const actions = {
       type: 'acrm/cases/TAKE_CASE_IN_PROGRESS',
       payload: progressedCase,
     } as const),
-  completeCase: (completedCase: caseType, _id: string) =>
-    ({
-      type: 'acrm/cases/COMPLETE_CASE',
-      payload: { completedCase, _id },
-    } as const),
-  setAllCompletedCasesList: (completedCases: allCasesListType) =>
-    ({
-      type: 'acrm/cases/SET_ALL_COMPLETED_CASES_LIST',
-      payload: completedCases,
-    } as const),
+}
+
+export const getAllCasesInProgress = (): ThunkType => async (dispatch) => {
+  try {
+    initializeLoading(dispatch)
+    const casesInProgress = await casesInProgressAPI.getAllCasesInProgress()
+
+    dispatch(actions.setAllCasesInProgressList(casesInProgress))
+
+    stopLoading(dispatch)
+  } catch (error) {
+    dispatch(
+      errorActions.setError({
+        code: 1,
+        message: 'Не удалось загрузить список выполняемых заявок',
+      })
+    )
+  }
 }
 
 export const takeCaseInProgress = (_id: string): ThunkType => async (
@@ -96,42 +91,6 @@ export const takeCaseInProgress = (_id: string): ThunkType => async (
       errorActions.setError({
         code: 1,
         message: 'Не удалось перевести заявку в статус выполнения...',
-      })
-    )
-  }
-}
-
-export const completeCase = (_id: string): ThunkType => async (
-  dispatch,
-  getState
-) => {
-  try {
-    const completedCase = await casesInProgressAPI.completeCase(_id)
-
-    dispatch(actions.completeCase(completedCase, _id))
-  } catch (error) {
-    dispatch(
-      errorActions.setError({
-        code: 1,
-        message: 'Не удалось выполнить заявку...',
-      })
-    )
-  }
-}
-
-export const getAllCompletedCases = (): ThunkType => async (dispatch) => {
-  try {
-    initializeLoading(dispatch)
-    const completedCasesList = await casesInProgressAPI.getAllCompletedCases()
-
-    dispatch(actions.setAllCompletedCasesList(completedCasesList))
-
-    stopLoading(dispatch)
-  } catch (error) {
-    dispatch(
-      errorActions.setError({
-        code: 1,
-        message: 'Не удалось загрузить список выполненных заявок...',
       })
     )
   }
