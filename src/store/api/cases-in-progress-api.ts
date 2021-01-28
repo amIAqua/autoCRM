@@ -7,6 +7,6 @@ export const casesInProgressAPI = {
     return casesInProgress.data
   },
   takeCaseInProgress: async (_id: string): Promise<void> => {
-    await axios.put(`/cases/toprogress/${_id}`)
+    await axios.put(`cases/toprogress/${_id}`)
   },
 }

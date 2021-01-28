@@ -3,7 +3,7 @@ import axios from './axios.config'
 
 export const completedCasesAPI = {
   completeCase: async (_id: string): Promise<caseType> => {
-    const completedCase = await axios.put(`/cases/complete/${_id}`)
+    const completedCase = await axios.put(`cases/complete/${_id}`)
     return completedCase.data
   },
   getAllCompletedCases: async (): Promise<allCasesListType> => {

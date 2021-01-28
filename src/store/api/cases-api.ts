@@ -10,7 +10,7 @@ export const caseAPI = {
     return allCases.data
   },
   getCurrentCase: async (_id: string): Promise<caseType> => {
-    const currentCase = await axios.get<caseType>(`/cases/${_id}`)
+    const currentCase = await axios.get<caseType>(`cases/${_id}`)
     return currentCase.data
   },
   editCurrentCase: async (
@@ -18,7 +18,7 @@ export const caseAPI = {
     _id: string
   ): Promise<caseType> => {
     const savedEditedCase = await axios.put<caseType>(
-      `/cases/edit/${_id}`,
+      `cases/edit/${_id}`,
       JSON.stringify(editedCase)
     )
     return savedEditedCase.data
