@@ -13,4 +13,4 @@ type tableItemType = {
   order: number
 }
 
-export type tableItemListType = Array<tableItemType>
+export type tableItemListType = Array<tableItemType> | null
