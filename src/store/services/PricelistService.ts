@@ -1,15 +1,18 @@
-import { makeAutoObservable, observable, action, computed } from 'mobx'
+import { makeObservable, observable, action, computed } from 'mobx'
 import { pricelistAPI } from '../api/pricelist-api'
+import { appService } from './AppService'
 import { priceListItemType, pricesListType } from '../types/pricesService.types'
 
 class PricelistService {
-  private _pricelistItem: priceListItemType = null
+  _pricelistItem: priceListItemType = null
   _pricelist: pricesListType = []
 
   constructor() {
-    makeAutoObservable(this, {
+    makeObservable(this, {
       _pricelist: observable,
+      _pricelistItem: observable,
       getAllPricelistFromDB: action,
+      pricelistLength: computed,
     })
   }
 
@@ -25,9 +28,11 @@ class PricelistService {
   // actions
   async getAllPricelistFromDB() {
     try {
+      appService.setLoadingTrue()
       const pricelist: pricesListType = await pricelistAPI.getAllPricelist()
 
       this.setPricelist(pricelist)
+      appService.setLoadingFalse()
     } catch (error) {
       // error handler
     }
@@ -36,6 +41,11 @@ class PricelistService {
   // setters
   setPricelist(fetchedPricelist: pricesListType) {
     this._pricelist = fetchedPricelist
+  }
+
+  // computed
+  get pricelistLength() {
+    return this._pricelist.length
   }
 }
 

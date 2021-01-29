@@ -5,7 +5,7 @@ const { Search } = Input
 
 export const PricesSearch: React.FC = () => {
   return (
-    <div className='search-container'>
+    <div className='search-container container'>
       <Search
         placeholder='Поиск по прайс-листу'
         style={{ width: '500px' }}

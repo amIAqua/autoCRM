@@ -1,26 +1,25 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { PricelistItem } from './PricelistItem/PricelistItem'
 import { pricelistService } from '../../store/services/PricelistService'
-import { priceListItemType } from '../../store/types/pricesService.types'
-import { useSelector } from 'react-redux'
-import { RootAppState } from '../../store'
-import { loadingSelector } from '../../store/selectors'
+import { columns, usePricelist } from './pricelist-table-config'
 import { Loader } from '../Loader/Loader'
+import { Table } from 'antd'
+import { appService } from '../../store/services/AppService'
 
 export const Pricelist: React.FC = observer(() => {
-  const loading = useSelector((state: RootAppState) => loadingSelector(state))
-
-  React.useEffect(() => {
-    pricelistService.getAllPricelistFromDB()
-  }, [])
+  const { pricelist } = usePricelist()
 
   return (
     <div>
-      {loading ? <Loader /> : null}
-      {pricelistService.priceslist.map((item: priceListItemType) => {
-        return <PricelistItem item={item} key={item!._id} />
-      })}
+      <h4 style={{ marginTop: '10px' }}>
+        Позиций в списке:&nbsp;{pricelistService.pricelistLength}
+      </h4>
+
+      <Table
+        columns={columns}
+        dataSource={pricelist}
+        loading={appService.loading}
+      />
     </div>
   )
 })

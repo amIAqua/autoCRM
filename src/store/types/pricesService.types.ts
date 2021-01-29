@@ -5,3 +5,12 @@ export type priceListItemType = {
 } | null
 
 export type pricesListType = Array<priceListItemType>
+
+type tableItemType = {
+  position: string
+  key: string
+  price: string
+  order: number
+}
+
+export type tableItemListType = Array<tableItemType>

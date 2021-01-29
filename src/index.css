@@ -5,12 +5,14 @@
 @import './components/DetailCaseCard/DetailCaseCard.css';
 @import './components/Loader/Loader.css';
 @import './components/PricesSearch/PricesSearch.css';
+@import './components/Pricelist/PricelistItem/PricelistItem.css';
 
 .container {
   width: 1140px;
   margin: 0px auto;
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .content-section {
