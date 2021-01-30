@@ -6,6 +6,7 @@
 @import './components/Loader/Loader.css';
 @import './components/PricesSearch/PricesSearch.css';
 @import './components/Pricelist/PricelistItem/PricelistItem.css';
+@import './components/CreateCostsCard/CreateCostsCard.css';
 
 .container {
   width: 1140px;

@@ -1,6 +1,11 @@
 import { caseType } from '../../store/types/casesReducer.types'
 import { getDate } from '../../utils/helpers'
 
+export type errorsType = {
+  name?: string
+  surname?: string
+}
+
 export const initialValues: caseType = {
   ownerInfo: {
     name: '',

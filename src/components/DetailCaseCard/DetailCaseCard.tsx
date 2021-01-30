@@ -134,14 +134,16 @@ export const DetailCaseCard: React.FC<Props> = ({
         ) : null}
 
         {item.completed ? (
-          <Button
-            style={{ marginLeft: '250px' }}
-            className='button'
-            type='primary'
-            icon={<ArrowRightOutlined />}
-          >
-            Составить смету
-          </Button>
+          <Link to={`/costs/${item._id}`}>
+            <Button
+              style={{ marginLeft: '250px' }}
+              className='button'
+              type='primary'
+              icon={<ArrowRightOutlined />}
+            >
+              Составить смету
+            </Button>
+          </Link>
         ) : null}
       </Card>
     </div>

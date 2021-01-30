@@ -1,15 +1,18 @@
-export type priceListItemType = {
-  _id: string
-  text: string
-  price: string
-} | null
+export type priceListItemType =
+  | {
+      _id: string
+      text: string
+      price: number
+    }
+  | null
+  | undefined
 
 export type pricesListType = Array<priceListItemType>
 
 type tableItemType = {
   position: string
   key: string
-  price: string
+  price: number
   order: number
 }
 

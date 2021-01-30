@@ -1,10 +1,22 @@
 import React from 'react'
-import { initialValues } from './case-form-config'
+import { errorsType, initialValues } from './case-form-config'
 import { caseType } from '../../store/types/casesReducer.types'
-import { Formik, FormikErrors, FormikHelpers, Field } from 'formik'
+import {
+  Formik,
+  FormikErrors,
+  FormikHelpers,
+  Field,
+  ErrorMessage,
+} from 'formik'
 import { Button, Checkbox } from 'antd'
 import { InputComponent, TextAreaComponent } from '../FormFields/form-fields'
 import { useNewCase } from '../../utils/useNewCase'
+import * as Yup from 'yup'
+
+const SignupSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required'),
+  surname: Yup.string().required('Surname is required'),
+})
 
 export const AddNewClientForm: React.FC = () => {
   const { addNewCaseHandler } = useNewCase()
@@ -13,10 +25,11 @@ export const AddNewClientForm: React.FC = () => {
     <div className='form-container'>
       <Formik
         initialValues={initialValues}
+        //validationSchema={SignupSchema}
         validate={(values: caseType) => {
-          const errors: FormikErrors<any> = {}
+          const errors: FormikErrors<errorsType> = {}
           if (!values.ownerInfo.name) {
-            errors.name = 'Name is equired'
+            errors.name = 'Name is required'
           }
           if (!values.ownerInfo.surname) {
             errors.surname = 'Surname is required'
@@ -24,10 +37,7 @@ export const AddNewClientForm: React.FC = () => {
 
           return errors
         }}
-        onSubmit={(
-          values: caseType,
-          { setSubmitting }: FormikHelpers<caseType>
-        ) => {
+        onSubmit={(values: caseType, { setSubmitting }: FormikHelpers<any>) => {
           addNewCaseHandler(values)
 
           setSubmitting(false)
@@ -50,14 +60,17 @@ export const AddNewClientForm: React.FC = () => {
                 placeholder='Имя'
                 component={InputComponent}
               />
-              {errors.ownerInfo?.name && touched.ownerInfo?.name}
+
+              <ErrorMessage name='ownerInfo.name' component='div' />
+
               <Field
                 name='ownerInfo.surname'
                 type='text'
                 placeholder='Фамилия'
                 component={InputComponent}
               />
-              {errors.ownerInfo?.surname && touched.ownerInfo?.surname}
+              <ErrorMessage name='surname' component='div' />
+
               <Field
                 name='ownerInfo.adress'
                 type='text'

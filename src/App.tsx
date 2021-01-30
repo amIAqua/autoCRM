@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux'
 import { RootAppState } from './store'
 import { loadingSelector } from './store/selectors'
 import { PricesLayout } from './layouts/PricesLayout/PricesLayout'
+import { CostsLayout } from './layouts/CostsLayout/CostsLayout'
 
 export const App: React.FC = () => {
   const loading = useSelector((state: RootAppState) => loadingSelector(state))
@@ -35,6 +36,7 @@ export const App: React.FC = () => {
           <Route component={CompletedCasesLayout} path='/completed' exact />
 
           <Route component={PricesLayout} path='/prices' exact />
+          <Route component={CostsLayout} path='/costs/:_id' exact />
         </Switch>
       </div>
     </div>

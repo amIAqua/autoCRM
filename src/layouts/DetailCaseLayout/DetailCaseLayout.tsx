@@ -1,5 +1,5 @@
 import React from 'react'
-import { match, useHistory } from 'react-router-dom'
+import { match, useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { DetailCaseCard } from '../../components/DetailCaseCard/DetailCaseCard'
 import { RootAppState } from '../../store'
@@ -15,15 +15,11 @@ import {
   loadingSelector,
 } from '../../store/selectors'
 
-type queryParams = {
+type Params = {
   _id: string
 }
 
-type Props = {
-  match: match<queryParams>
-}
-
-export const DetailCaseLayout: React.FC<Props> = ({ match }) => {
+export const DetailCaseLayout: React.FC = () => {
   const loading = useSelector((state: RootAppState) => loadingSelector(state))
   const error = useSelector((state: RootAppState) => errorsSelector(state))
   const currentCaseDetails = useSelector((state: RootAppState) =>
@@ -32,9 +28,7 @@ export const DetailCaseLayout: React.FC<Props> = ({ match }) => {
   const { successMessage, errorMessage } = useMessages()
   const dispatch = useDispatch()
   const history = useHistory()
-
-  // getting url caseId params
-  const _id = match.params._id
+  const { _id }: Params = useParams()
 
   React.useEffect((): any => {
     dispatch(getCaseDetails(_id))
