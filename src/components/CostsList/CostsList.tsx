@@ -1,11 +1,20 @@
 import { FC } from 'react'
 import { observer } from 'mobx-react'
-import { Card, Divider } from 'antd'
+import { Button, Card, Divider } from 'antd'
 import { costsService } from '../../store/services/CostsService'
+import { formatedPrice } from '../../utils/dineroHelpers'
 
-export const CostsList: FC = observer(() => {
+type Props = {
+  _id: string
+}
+
+export const CostsList: FC<Props> = observer(({ _id }) => {
   const deleteItemHandler = (_id: string) => {
     costsService.deletePosition(_id)
+  }
+
+  const addCostsListHandler = () => {
+    costsService.saveCostsList(_id)
   }
 
   return (
@@ -19,13 +28,33 @@ export const CostsList: FC = observer(() => {
                   style={{ display: 'flex', justifyContent: 'space-between' }}
                 >
                   <h4>{item.text}</h4>
-                  <p onClick={() => deleteItemHandler(item._id)}>&times;</p>
+                  <h4>{formatedPrice(item.price)}</h4>
+                  <Button
+                    size='small'
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      borderRadius: '5px',
+                      color: 'red',
+                      border: '1px solid red',
+                    }}
+                  >
+                    <p onClick={() => deleteItemHandler(item._id)}>&times;</p>
+                  </Button>
                 </div>
               )
             })
-          : 'пусто'}
+          : 'Смета пуста :('}
         <Divider />
-        {costsService.totalCasePrice}
+        <h3>Итого: {costsService.totalCasePrice}</h3>
+        <Divider />
+        <Button
+          type='primary'
+          onClick={addCostsListHandler}
+          style={{ borderRadius: '20px' }}
+        >
+          Сохранить
+        </Button>
       </Card>
     </div>
   )

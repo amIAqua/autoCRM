@@ -42,6 +42,7 @@ export const initialState = {
     _id: '',
     inProgress: false,
     completed: false,
+    costed: false,
   } as caseType,
   allCasesList: [] as allCasesListType,
 }
@@ -78,7 +79,6 @@ export const caseReducer = (
           (item) => item._id !== action.payload
         ),
       }
-
     default:
       return state
   }

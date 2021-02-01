@@ -36,7 +36,7 @@ export const CostsLayout: FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <CreateCostsCard currentCase={currentCase} />
       <PricelistSelect />
-      <CostsList />
+      <CostsList _id={_id} />
     </div>
   )
 }

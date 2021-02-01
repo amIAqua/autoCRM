@@ -16,6 +16,6 @@ export const columns = [
     title: 'Стоимость',
     dataIndex: 'price',
     key: 'price',
-    render: (price: string) => <h3>{price}$</h3>,
+    render: (price: string) => <h3>{price}</h3>,
   },
 ]

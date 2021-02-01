@@ -35,4 +35,5 @@ export const initialValues: caseType = {
   },
   inProgress: false,
   completed: false,
+  costed: false,
 }

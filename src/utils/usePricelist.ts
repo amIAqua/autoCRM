@@ -4,18 +4,20 @@ import {
   priceListItemType,
   tableItemListType,
 } from '../store/types/pricesService.types'
+import { formatedPrice } from '../utils/dineroHelpers'
 
 export const usePricelist = (): any => {
   const [pricelist, setPricelist] = React.useState<tableItemListType>()
 
   const createTableData = () => {
-    const data: tableItemListType = pricelistService.priceslist.map(
+    // TODO ITEM TYPE INCOMPARABLE
+    const data: any = pricelistService.priceslist.map(
       (item: priceListItemType, index: number) => {
         return {
           key: item!._id,
           order: index + 1,
           position: item!.text,
-          price: item!.price,
+          price: formatedPrice(item!.price),
         }
       }
     )

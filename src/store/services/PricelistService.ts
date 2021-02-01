@@ -26,6 +26,8 @@ class PricelistService {
   }
 
   // actions
+
+  // getting all pricelist from database
   async getAllPricelistFromDB() {
     try {
       appService.setLoadingTrue()

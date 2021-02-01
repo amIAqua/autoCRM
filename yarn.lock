@@ -1815,6 +1815,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/dinero.js@^1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@types/dinero.js/-/dinero.js-1.6.5.tgz#bde1cb8384f52d73a8bb951d2b66d8a5b59c50df"
+  integrity sha512-mDpUUr/PA68nrtb+ZnOa7kIPkbPVa7yCfB0EsFIWwcZrKYGlbp1F8roAHyQSehYNuaByjiBKU6B9iqPeRgUyiA==
+
 "@types/eslint@^7.2.4":
   version "7.2.5"
   resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.5.tgz#92172ecf490c2fce4b076739693d75f30376d610"
@@ -4409,6 +4414,11 @@ diffie-hellman@^5.0.0:
     bn.js "^4.1.0"
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
+
+dinero.js@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/dinero.js/-/dinero.js-1.8.1.tgz#775a647629b4195af9d02f46e9b7fa1fd81e906d"
+  integrity sha512-AQ09MDKonkGUrhBZZFx4tPTVcVJuHJ0VEA73LvcBoBB2eQSi1DbapeXj4wnUUpx1hVnPdyev1xPNnNMGy/Au0g==
 
 dir-glob@^3.0.1:
   version "3.0.1"

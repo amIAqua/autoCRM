@@ -29,6 +29,7 @@ export type caseType = {
   _id?: string
   inProgress: boolean
   completed: boolean
+  costed: boolean
 }
 
 export type allCasesListType = Array<caseType>

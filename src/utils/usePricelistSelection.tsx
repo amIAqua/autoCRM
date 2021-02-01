@@ -3,15 +3,13 @@ import { Select } from 'antd'
 import { pricelistService } from '../store/services/PricelistService'
 import { costsService } from '../store/services/CostsService'
 import { priceListItemType } from '../store/types/pricesService.types'
+import { dinero } from '../utils/dineroHelpers'
 
 const { Option } = Select
 
 export const usePricelistSelection = () => {
   useEffect(() => {
-    const getData = async () => {
-      await pricelistService.getAllPricelistFromDB()
-    }
-    getData()
+    pricelistService.getAllPricelistFromDB()
   }, [])
 
   const handleSelectChangeChange = (value: string) => {
@@ -29,7 +27,7 @@ export const usePricelistSelection = () => {
         {pricelistService.priceslist.map((item: priceListItemType) => {
           return (
             <Option key={item?._id} value={item!.text}>
-              {item!.text}/{item!.price}
+              <main>{item!.text}</main>
             </Option>
           )
         })}

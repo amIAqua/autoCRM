@@ -133,7 +133,7 @@ export const DetailCaseCard: React.FC<Props> = ({
           </Button>
         ) : null}
 
-        {item.completed ? (
+        {item.completed && !item.costed ? (
           <Link to={`/costs/${item._id}`}>
             <Button
               style={{ marginLeft: '250px' }}
@@ -142,6 +142,19 @@ export const DetailCaseCard: React.FC<Props> = ({
               icon={<ArrowRightOutlined />}
             >
               Составить смету
+            </Button>
+          </Link>
+        ) : null}
+
+        {item.completed && item.costed ? (
+          <Link to={`/costs/${item._id}`}>
+            <Button
+              style={{ marginLeft: '230px' }}
+              className='button'
+              type='primary'
+              icon={<ArrowRightOutlined />}
+            >
+              Просмотреть смету
             </Button>
           </Link>
         ) : null}
