@@ -34,19 +34,21 @@ export const CostsList: FC<Props> = observer(({ _id, currentCase }) => {
         >
           <h4>{item!.text}</h4>
           <h4>{formatedPrice(item!.price)}</h4>
-          <Button
-            size='small'
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              borderRadius: '5px',
-              color: 'red',
-              border: '1px solid red',
-            }}
-            onClick={() => deleteItemHandler(item!._id)}
-          >
-            <p>&times;</p>
-          </Button>
+          {!currentCase.costed ? (
+            <Button
+              size='small'
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                borderRadius: '5px',
+                color: 'red',
+                border: '1px solid red',
+              }}
+              onClick={() => deleteItemHandler(item!._id)}
+            >
+              <p>&times;</p>
+            </Button>
+          ) : null}
         </div>
       )
     })
@@ -66,13 +68,15 @@ export const CostsList: FC<Props> = observer(({ _id, currentCase }) => {
         <Divider />
         <h3>Итого: {costsService.totalCasePrice}</h3>
         <Divider />
-        <Button
-          type='primary'
-          style={{ borderRadius: '20px' }}
-          onClick={addCostsListHandler}
-        >
-          Сохранить
-        </Button>
+        {currentCase.costed ? null : (
+          <Button
+            type='primary'
+            style={{ borderRadius: '20px' }}
+            onClick={addCostsListHandler}
+          >
+            Сохранить
+          </Button>
+        )}
       </Card>
     </div>
   )

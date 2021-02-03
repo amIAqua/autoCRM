@@ -4,6 +4,7 @@ import { priceListItemType } from '../types/pricesService.types'
 import { pricelistService } from './PricelistService'
 import { costsAPI } from '../api/costs-api'
 import { dinero, formatedPrice } from '../../utils/dineroHelpers'
+import { DineroObject } from 'dinero.js'
 
 class CostsService {
   _caseCostsList: caseCostsListType = []
@@ -29,6 +30,7 @@ class CostsService {
       findCandidateByText: action,
       saveCostsList: action,
       setCostsList: action,
+      setCostsTotal: action,
     })
   }
 
@@ -54,6 +56,14 @@ class CostsService {
     this._totalCasePrice = dinero(0)
   }
 
+  setCostsList(value: any) {
+    this._caseCostsList = value
+  }
+
+  setCostsTotal(total: any) {
+    this._totalCasePrice = dinero(total)
+  }
+
   // find item in costs list if exists
   findCandidateByText(text: string) {
     return this.caseCostsList.find(
@@ -75,10 +85,6 @@ class CostsService {
       this._caseCostsList.push(pricelistItem)
       this.reduceTotalPrice(pricelistItem.price)
     }
-  }
-
-  setCostsList(value: any) {
-    this._caseCostsList = value
   }
 
   // saving costs list to database
@@ -112,8 +118,10 @@ class CostsService {
         })
 
         this.setCostsList(costsList)
+        this.setCostsTotal(currentCaseList[0].totalPrice)
       } else {
         this.setCostsList([])
+        this.setCostsTotal(0)
       }
     } catch (error) {}
   }
