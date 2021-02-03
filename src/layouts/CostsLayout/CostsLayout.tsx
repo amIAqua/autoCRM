@@ -8,6 +8,7 @@ import { PricelistSelect } from '../../components/PricelistSelect/PricelistSelec
 import { RootAppState } from '../../store'
 import { getCaseDetails } from '../../store/reducers/case_Reducer'
 import { currentCaseSelector, loadingSelector } from '../../store/selectors'
+import { costsService } from '../../store/services/CostsService'
 
 type Params = {
   _id: string
@@ -35,8 +36,8 @@ export const CostsLayout: FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <CreateCostsCard currentCase={currentCase} />
-      <PricelistSelect />
-      <CostsList _id={_id} />
+      <PricelistSelect currentCase={currentCase} />
+      <CostsList _id={_id} currentCase={currentCase} />
     </div>
   )
 }

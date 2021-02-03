@@ -1,9 +1,9 @@
 import { makeObservable, observable, action, computed, toJS } from 'mobx'
-import { caseCostsListType } from '../types/costsService.types'
+import { caseCostsListType, casePosition } from '../types/costsService.types'
 import { priceListItemType } from '../types/pricesService.types'
 import { pricelistService } from './PricelistService'
 import { costsAPI } from '../api/costs-api'
-import { dinero } from '../../utils/dineroHelpers'
+import { dinero, formatedPrice } from '../../utils/dineroHelpers'
 
 class CostsService {
   _caseCostsList: caseCostsListType = []
@@ -19,11 +19,13 @@ class CostsService {
       totalCasePrice: computed,
       textValue: computed,
       setTextValue: action,
+      setZeroTotalPrice: action,
       addPosition: action,
       reduceTotalPrice: action,
       deletePosition: action,
       substractFromTotal: action,
       findItem: action,
+      getCurrentCaseCostsList: action,
       findCandidateByText: action,
       saveCostsList: action,
       setCostsList: action,
@@ -32,7 +34,7 @@ class CostsService {
 
   // fields getters
   get caseCostsList() {
-    return this._caseCostsList
+    return toJS(this._caseCostsList)
   }
 
   get totalCasePrice() {
@@ -46,6 +48,10 @@ class CostsService {
   // actions
   setTextValue(value: string) {
     this._textValue = value
+  }
+
+  setZeroTotalPrice() {
+    this._totalCasePrice = dinero(0)
   }
 
   // find item in costs list if exists
@@ -79,9 +85,36 @@ class CostsService {
   async saveCostsList(_id: string) {
     try {
       if (!this.caseCostsList.length) return
-      await costsAPI.saveCustomersCostsList(toJS(this._caseCostsList), _id)
+      await costsAPI.saveCustomersCostsList(
+        toJS(this._caseCostsList),
+        toJS(this._totalCasePrice.getAmount()),
+        _id
+      )
 
       this.setCostsList([])
+      this.setZeroTotalPrice()
+    } catch (error) {}
+  }
+
+  async getCurrentCaseCostsList(_id: string) {
+    try {
+      let currentCaseList: any = await costsAPI.getCurrentCaseCostsList(_id)
+
+      if (currentCaseList[0]) {
+        const costsList: caseCostsListType = []
+
+        currentCaseList[0].costs.map((item: casePosition) => {
+          costsList.push({
+            _id: item!._id,
+            text: item!.text,
+            price: item!.price,
+          })
+        })
+
+        this.setCostsList(costsList)
+      } else {
+        this.setCostsList([])
+      }
     } catch (error) {}
   }
 
