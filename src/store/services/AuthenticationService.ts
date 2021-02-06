@@ -70,7 +70,7 @@ class AuthenticationService {
     }
 
     try {
-      token = jwt.verify(acrmvaltoken!, 'secret')
+      token = jwt.verify(acrmvaltoken!, 'acrmsecretkey')
 
       if (token) {
         this.setAuthenticationStatus()
@@ -79,16 +79,6 @@ class AuthenticationService {
       Cookies.remove('acrmvaltoken')
       this.authenticationStatusFalse()
     }
-
-    // @ts-ignore
-    // if (Date.now() >= token.exp * 1000) {
-    //   console.log('expired')
-
-    //   // TOKEN EXPIRATION TODO
-
-    //   Cookies.remove('acrmvaltoken')
-    //   return
-    // }
   }
 }
 
