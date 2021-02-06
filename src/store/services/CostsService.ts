@@ -80,8 +80,6 @@ class CostsService {
 
     const candidate = this.findCandidateByText(pricelistItem!.text)
 
-    console.log(typeof pricelistItem?.price)
-
     if (pricelistItem && !candidate) {
       this._caseCostsList.push(pricelistItem)
       this.reduceTotalPrice(pricelistItem.price)
@@ -111,7 +109,7 @@ class CostsService {
         const costsList: caseCostsListType = []
 
         currentCaseList[0].costs.map((item: casePosition) => {
-          costsList.push({
+          return costsList.push({
             _id: item!._id,
             text: item!.text,
             price: item!.price,
