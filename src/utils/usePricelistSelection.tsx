@@ -3,7 +3,6 @@ import { Select } from 'antd'
 import { pricelistService } from '../store/services/PricelistService'
 import { costsService } from '../store/services/CostsService'
 import { priceListItemType } from '../store/types/pricesService.types'
-import { dinero } from '../utils/dineroHelpers'
 
 const { Option } = Select
 

@@ -3,8 +3,7 @@ import { caseCostsListType, casePosition } from '../types/costsService.types'
 import { priceListItemType } from '../types/pricesService.types'
 import { pricelistService } from './PricelistService'
 import { costsAPI } from '../api/costs-api'
-import { dinero, formatedPrice } from '../../utils/dineroHelpers'
-import { DineroObject } from 'dinero.js'
+import { dinero } from '../../utils/dineroHelpers'
 
 class CostsService {
   _caseCostsList: caseCostsListType = []
@@ -56,11 +55,11 @@ class CostsService {
     this._totalCasePrice = dinero(0)
   }
 
-  setCostsList(value: any) {
+  setCostsList(value: caseCostsListType) {
     this._caseCostsList = value
   }
 
-  setCostsTotal(total: any) {
+  setCostsTotal(total: number) {
     this._totalCasePrice = dinero(total)
   }
 
@@ -80,6 +79,8 @@ class CostsService {
     )
 
     const candidate = this.findCandidateByText(pricelistItem!.text)
+
+    console.log(typeof pricelistItem?.price)
 
     if (pricelistItem && !candidate) {
       this._caseCostsList.push(pricelistItem)
