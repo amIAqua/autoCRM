@@ -14,6 +14,7 @@ import {
   errorsSelector,
   loadingSelector,
 } from '../../store/selectors'
+import { useTranslation } from 'react-i18next'
 
 type Params = {
   _id: string
@@ -26,6 +27,7 @@ export const DetailCaseLayout: React.FC = () => {
     currentCaseSelector(state)
   )
   const { successMessage, errorMessage } = useMessages()
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const history = useHistory()
   const { _id }: Params = useParams()
@@ -54,19 +56,19 @@ export const DetailCaseLayout: React.FC = () => {
   const deleteItemHandler = (_id: string) => {
     dispatch(deleteCase(_id))
 
-    returnAndSuccess('Заявка была удалена успешно')
+    returnAndSuccess(t('Заявка была удалена успешно'))
   }
 
   const takeInProgressHandler = (_id: string) => {
     dispatch(takeCaseInProgress(_id))
 
-    returnAndSuccess('Заявка переведена в статус выполнения')
+    returnAndSuccess(t('Заявка переведена в статус выполнения'))
   }
 
   const completeCaseHandler = (_id: string) => {
     dispatch(completeCase(_id))
 
-    returnAndSuccess('Заявка переведена в статус выполненных')
+    returnAndSuccess(t('Заявка переведена в статус выполненных'))
   }
 
   return (

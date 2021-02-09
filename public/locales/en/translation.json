@@ -1,0 +1,71 @@
+{
+  "Назад": "Previous page",
+  "Выход": "Sign out",
+  "Управление заявками": "Manage cases",
+  "Прайс-лист": "Pricelist",
+
+  "Оформить заявку": "Add new case",
+  "Необработанные заявки": "Unprocessed cases",
+  "Выполняемые заявки": "Processed cases",
+  "Выполненные заявки": "Completed cases",
+
+  "Владелец": "Owner",
+  "Автомобиль": "Auto",
+  "Жалобы и неисправности": "Defects",
+  "Перечень выполненных работ": "Completed work",
+  "Добавить в выполняемые": "Add to processed",
+  "Добавить": "Add",
+  "Подробнее": "More",
+
+  "Имя": "Name",
+  "Фамилия": "Surname",
+  "Адрес": "Adress",
+  "Номер телефона": "Phone number",
+  "Телефон": "Phone number",
+  "Марка": "Brand",
+  "Модель": "Model",
+  "Год выпуска": "Year",
+  "Номер кузова": "Body number",
+  "Объем двигателя": "Engine volume",
+  "Тип двигателя": "Engine specification",
+  "Спецификация": "Specification",
+  "Описание неисправностей": "Defects description",
+  "Перечень неисправностей": "Defects",
+  "Описание выполненных работ": "Completed works description",
+  "Выполненные работы": "Completed works",
+  "Мастер": "Worker",
+
+  "Дата оформления заявки": "Created at",
+  "Дата выполнения заявки": "Completed at",
+  "Заявок в списке": "Cases in list",
+
+  "Ничего не найдено": "Nothing was found",
+
+  "Пароль": "Password",
+  "Войти": "Sign in",
+  "Редактировать": "Edit",
+  "Удалить": "Delete",
+  "Начать выполнение": "Set processing",
+  "Завершить выполнение": "Stop processing",
+  "Просмотреть смету": "Show costs",
+  "Составить смету": "Create costs",
+  "Сохранить": "Save",
+  "Найти": "Search",
+
+  "Заявка переведена в статус выполнения": "Case was successfully set to processing",
+  "Заявка переведена в статус выполненных": "Case was successfully set to completed",
+  "Заявка была удалена успешно": "Case was deleted successfully",
+  "Заявка была отредактирована успешно": "Case was successfully edited",
+
+  "Смета пуста": "No costs",
+  "Смета": "Costs",
+  "Итого": "Total",
+
+  "Выбор из прайс-листа": "Positions in pricelist",
+  "Выберите позицию из списка": "Choose position from pricelist",
+  "Позиций в списке": "Positions in list",
+  "Поиск по прайс-листу": "Search in pricelist",
+
+  "Позиция": "Position",
+  "Стоимость": "Price"
+}

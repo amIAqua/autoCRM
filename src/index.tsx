@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 
 // redux
@@ -7,6 +7,9 @@ import { store } from './store'
 
 // router
 import { BrowserRouter as Router } from 'react-router-dom'
+
+// localization
+import './localization/i18n'
 
 import { App } from './App'
 import reportWebVitals from './reportWebVitals'
@@ -20,7 +23,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <App />
+        <Suspense fallback={<div>Loading...</div>}>
+          <App />
+        </Suspense>
       </Router>
     </Provider>
   </React.StrictMode>,

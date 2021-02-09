@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Badge } from 'antd'
+import { Card, Badge, Button } from 'antd'
 import { allCasesListType } from '../../store/types/casesReducer.types'
+import { useTranslation } from 'react-i18next'
 
 const gridStyle: React.CSSProperties = {
   width: '25%',
@@ -20,43 +21,46 @@ type Props = {
 }
 
 export const SpecifyCards: React.FC<Props> = ({ contain }) => {
+  const { t } = useTranslation()
   // TODO: LINKS ON THE FULL BLOCK
   return (
-    <div className='specify-cards-container'>
-      <Card.Grid style={gridStyle} className='specify-card'>
+    <div className='container'>
+      <Button className='specify-card'>
         <Link className='specify-link' to='/new'>
-          Оформить заявку
+          {t('Оформить заявку')}
         </Link>
-      </Card.Grid>
-      <Card.Grid style={gridStyle} className='specify-card'>
-        <Badge count={contain.cases.length} className='card-badge'>
+      </Button>
+      <Badge count={contain.cases.length} className='card-badge'>
+        <Button className='specify-card'>
           <Link className='specify-link' to='/cases'>
-            Необработанные заявки
+            {t('Необработанные заявки')}
           </Link>
-        </Badge>
-      </Card.Grid>
-      <Card.Grid style={gridStyle} className='specify-card'>
-        <Badge
-          count={contain.inProgress.length}
-          style={{ background: '#239ade' }}
-          className='card-badge'
-        >
+        </Button>
+      </Badge>
+
+      <Badge
+        count={contain.inProgress.length}
+        style={{ background: '#239ade' }}
+        className='card-badge'
+      >
+        <Button className='specify-card'>
           <Link className='specify-link' to='/inprogress'>
-            Выполняемые заявки
+            {t('Выполняемые заявки')}
           </Link>
-        </Badge>
-      </Card.Grid>
-      <Card.Grid style={gridStyle} className='specify-card'>
-        <Badge
-          count={contain.completed.length}
-          style={{ background: '#08c434' }}
-          className='card-badge'
-        >
+        </Button>
+      </Badge>
+
+      <Badge
+        count={contain.completed.length}
+        style={{ background: '#08c434' }}
+        className='card-badge'
+      >
+        <Button className='specify-card'>
           <Link className='specify-link' to='/completed'>
-            Выполненные заявки
+            {t('Выполненные заявки')}
           </Link>
-        </Badge>
-      </Card.Grid>
+        </Button>
+      </Badge>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { costsService } from '../../store/services/CostsService'
 import { formatedPrice } from '../../utils/dineroHelpers'
 import { priceListItemType } from '../../store/types/pricesService.types'
 import { caseType } from '../../store/types/casesReducer.types'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   _id: string
@@ -12,6 +13,8 @@ type Props = {
 }
 
 export const CostsList: FC<Props> = observer(({ _id, currentCase }) => {
+  const { t } = useTranslation()
+
   const deleteItemHandler = (_id: string) => {
     costsService.deletePosition(_id)
   }
@@ -25,14 +28,13 @@ export const CostsList: FC<Props> = observer(({ _id, currentCase }) => {
   }, [_id])
 
   const placeCostsListData = () => {
-    // if (costsService.caseCostsList.length) {
     return costsService.caseCostsList.map((item: priceListItemType) => {
       return (
         <div
           key={item!._id}
           style={{ display: 'flex', justifyContent: 'space-between' }}
         >
-          <h4>{item!.text}</h4>
+          <h4>{t(item!.text)}</h4>
           <h4>{formatedPrice(item!.price)}</h4>
           {!currentCase.costed ? (
             <Button
@@ -52,21 +54,21 @@ export const CostsList: FC<Props> = observer(({ _id, currentCase }) => {
         </div>
       )
     })
-
-    //  }
   }
 
   return (
     <div className='container'>
-      <Card title='Смета' className='costs-case-card'>
+      <Card title={t('Смета')} className='costs-case-card'>
         {costsService.caseCostsList.length ? (
           placeCostsListData()
         ) : (
-          <p>Смета пуста :(</p>
+          <p>{t('Смета пуста')} :(</p>
         )}
 
         <Divider />
-        <h3>Итого: {costsService.totalCasePrice}</h3>
+        <h3>
+          {t('Итого')}: {costsService.totalCasePrice}
+        </h3>
         <Divider />
         {currentCase.costed ? null : (
           <Button
@@ -74,7 +76,7 @@ export const CostsList: FC<Props> = observer(({ _id, currentCase }) => {
             style={{ borderRadius: '20px' }}
             onClick={addCostsListHandler}
           >
-            Сохранить
+            {t('Сохранить')}
           </Button>
         )}
       </Card>

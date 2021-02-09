@@ -5,6 +5,7 @@ import { costsService } from '../../store/services/CostsService'
 import { pricelistService } from '../../store/services/PricelistService'
 import { observer } from 'mobx-react'
 import { caseType } from '../../store/types/casesReducer.types'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   currentCase: caseType
@@ -12,19 +13,20 @@ type Props = {
 
 export const PricelistSelect: FC<Props> = observer(({ currentCase }) => {
   const { returnSelectWithOptions } = usePricelistSelection()
+  const { t } = useTranslation()
 
   return (
     <div className='container'>
       {!currentCase.costed ? (
         pricelistService.pricelistLength ? (
-          <Card title='Выбор из прайс-листа' className='costs-case-card'>
+          <Card title={t('Выбор из прайс-листа')} className='costs-case-card'>
             {returnSelectWithOptions()}
             <Button
               type='primary'
               onClick={() => costsService.addPosition()}
               style={{ marginLeft: '10px' }}
             >
-              Добавить
+              {t('Добавить')}
             </Button>
           </Card>
         ) : null

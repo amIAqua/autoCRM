@@ -3,25 +3,27 @@ import { Button, Descriptions, Divider } from 'antd'
 import { NavLink } from 'react-router-dom'
 import { getFullName } from '../../../utils/name_utils'
 import { caseType } from '../../../store/types/casesReducer.types'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   item: caseType
 }
 
 export const CasesListItem: React.FC<Props> = ({ item }) => {
+  const { t } = useTranslation()
   return (
     <div className='case-card'>
       <div>
         <Descriptions title={`No. ${item.caseId}`}>
-          <Descriptions.Item label='Владелец'>
+          <Descriptions.Item label={t('Владелец')}>
             <b>{getFullName(item.ownerInfo.name, item.ownerInfo.surname)}</b>
           </Descriptions.Item>
-          <Descriptions.Item label='Дата оформления заявки'>
+          <Descriptions.Item label={t('Дата оформления заявки')}>
             <b>{item.navigation.createdDate}</b>
           </Descriptions.Item>
 
           {item.completed ? (
-            <Descriptions.Item label='Дата выполнения заявки'>
+            <Descriptions.Item label={t('Дата выполнения заявки')}>
               <b>{item.navigation.completedDate}</b>
             </Descriptions.Item>
           ) : null}
@@ -35,7 +37,7 @@ export const CasesListItem: React.FC<Props> = ({ item }) => {
           type='primary'
           style={{ marginBottom: '10px' }}
         >
-          Подробнее
+          {t('Подробнее')}
         </Button>
       </NavLink>
     </div>

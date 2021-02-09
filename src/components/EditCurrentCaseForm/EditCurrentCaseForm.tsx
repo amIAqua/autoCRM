@@ -8,6 +8,7 @@ import { editCurrentCase } from '../../store/reducers/case_Reducer'
 import { useHistory } from 'react-router-dom'
 import { InputComponent } from '../FormFields/form-fields'
 import { useMessages } from '../../utils/useMessages'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   currentCase: caseType
@@ -17,6 +18,7 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const { successMessage } = useMessages()
+  const { t } = useTranslation()
   return (
     <div className='form-container'>
       <Formik
@@ -40,7 +42,7 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
           setSubmitting(false)
 
           history.push(`/cases/${currentCase._id}`)
-          successMessage('Заявка была отредактирована успешно')
+          successMessage(t('Заявка была отредактирована успешно'))
         }}
       >
         {({
@@ -55,11 +57,11 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
         }) => (
           <form onSubmit={handleSubmit}>
             <section className='owner-info-form-section'>
-              <h3>Владелец</h3>
+              <h3>{t('Владелец')}</h3>
               <Field
                 name='ownerInfo.name'
                 type='text'
-                placeholder='Имя'
+                placeholder={t('Имя')}
                 component={InputComponent}
               />
 
@@ -67,14 +69,14 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
               <Field
                 name='ownerInfo.surname'
                 type='text'
-                placeholder='Фамилия'
+                placeholder={t('Фамилия')}
                 component={InputComponent}
               />
               {errors.ownerInfo?.surname && touched.ownerInfo?.surname}
               <Field
                 name='ownerInfo.adress'
                 type='text'
-                placeholder='Адрес'
+                placeholder={t('Адрес')}
                 component={InputComponent}
               />
               <Field
@@ -86,68 +88,68 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
               <Field
                 name='ownerInfo.contacts.phoneNumber'
                 type='text'
-                placeholder='Номер телефона'
+                placeholder={t('Номер телефона')}
                 component={InputComponent}
               />
             </section>
             <section className='auto-info-form-section'>
-              <h3>Автомобиль</h3>
+              <h3>{t('Автомобиль')}</h3>
 
               <Field
                 name='autoInfo.brand'
                 type='text'
-                placeholder='Марка'
+                placeholder={t('Марка')}
                 component={InputComponent}
               />
 
               <Field
                 name='autoInfo.model'
                 type='text'
-                placeholder='Модель'
+                placeholder={t('Модель')}
                 component={InputComponent}
               />
               <Field
                 name='autoInfo.year'
                 type='text'
-                placeholder='Год выпуска'
+                placeholder={t('Год выпуска')}
                 component={InputComponent}
               />
               <Field
                 name='autoInfo.bodyNumber'
                 type='text'
-                placeholder='Номер кузова'
+                placeholder={t('Номер кузова')}
                 component={InputComponent}
               />
               <Field
                 name='autoInfo.engine.volume'
                 type='text'
-                placeholder='Объем двигателя'
+                placeholder={t('Объем двигателя')}
                 component={InputComponent}
               />
               <Field
                 name='autoInfo.engine.specification'
                 type='text'
-                placeholder='Тип двигателя'
+                placeholder={t('Тип двигателя')}
                 component={InputComponent}
               />
             </section>
             <section className='problems-info-form-section'>
-              <h3>Жалобы и неисправности</h3>
+              <h3>{t('Жалобы и неисправности')}</h3>
 
               <TextArea
                 name='problems'
-                placeholder='Описание неисправностей'
+                placeholder={t('Описание неисправностей')}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.problems}
               />
             </section>
             <section className='result-info-form-section'>
-              <h3>Перечень выполненных работ</h3>
+              <h3>{t('Перечень выполненных работ')}</h3>
 
               <TextArea
                 name='result'
-                placeholder='Выполненные работы'
+                placeholder={t('Выполненные работы')}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.result}
@@ -157,7 +159,7 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
               <Input
                 type='text'
                 name='navigation.date'
-                placeholder='Дата'
+                placeholder={t('Дата')}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.navigation.createdDate}
@@ -165,7 +167,7 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
               <Input
                 type='text'
                 name='navigation.worker'
-                placeholder='Ф.И.О мастера'
+                placeholder={t('Мастер')}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.navigation.worker}
@@ -180,7 +182,7 @@ export const EditCurrentCaseForm: React.FC<Props> = ({ currentCase }) => {
               size='large'
               style={{ marginTop: '20px' }}
             >
-              Сохранить
+              {t('Сохранить')}
             </Button>
           </form>
         )}

@@ -1,19 +1,9 @@
-.specify-cards-container {
-  margin-top: 200px;
-  display: flex;
-}
-
 .specify-card {
-  width: 200px;
-}
-
-.specify-link {
-  display: block;
-  width: 100%;
-  color: #000;
-}
-
-.card-badge {
-  padding-top: 5px;
-  padding-right: 5px;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin-left: 15px;
+  font-weight: 700;
 }

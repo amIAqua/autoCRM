@@ -11,21 +11,16 @@ import {
 import { Button, Checkbox } from 'antd'
 import { InputComponent, TextAreaComponent } from '../FormFields/form-fields'
 import { useNewCase } from '../../utils/useNewCase'
-import * as Yup from 'yup'
-
-const SignupSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
-  surname: Yup.string().required('Surname is required'),
-})
+import { useTranslation } from 'react-i18next'
 
 export const AddNewClientForm: React.FC = () => {
   const { addNewCaseHandler } = useNewCase()
+  const { t } = useTranslation()
 
   return (
     <div className='form-container'>
       <Formik
         initialValues={initialValues}
-        //validationSchema={SignupSchema}
         validate={(values: caseType) => {
           const errors: FormikErrors<errorsType> = {}
           if (!values.ownerInfo.name) {
@@ -53,11 +48,11 @@ export const AddNewClientForm: React.FC = () => {
         }) => (
           <form onSubmit={handleSubmit}>
             <section className='owner-info-form-section'>
-              <h3>Владелец</h3>
+              <h3>{t('Владелец')}</h3>
               <Field
                 name='ownerInfo.name'
                 type='text'
-                placeholder='Имя'
+                placeholder={t('Имя')}
                 component={InputComponent}
               />
 
@@ -66,7 +61,7 @@ export const AddNewClientForm: React.FC = () => {
               <Field
                 name='ownerInfo.surname'
                 type='text'
-                placeholder='Фамилия'
+                placeholder={t('Фамилия')}
                 component={InputComponent}
               />
               <ErrorMessage name='surname' component='div' />
@@ -74,7 +69,7 @@ export const AddNewClientForm: React.FC = () => {
               <Field
                 name='ownerInfo.adress'
                 type='text'
-                placeholder='Адрес'
+                placeholder={t('Адрес')}
                 component={InputComponent}
               />
               <Field
@@ -86,72 +81,72 @@ export const AddNewClientForm: React.FC = () => {
               <Field
                 name='ownerInfo.contacts.phoneNumber'
                 type='text'
-                placeholder='Номер телефона'
+                placeholder={t('Номер телефона')}
                 component={InputComponent}
               />
             </section>
             <section className='auto-info-form-section'>
-              <h3>Автомобиль</h3>
+              <h3>{t('Автомобиль')}</h3>
 
               <Field
                 name='autoInfo.brand'
                 type='text'
-                placeholder='Марка'
+                placeholder={t('Марка')}
                 component={InputComponent}
               />
               <Field
                 name='autoInfo.model'
                 type='text'
-                placeholder='Модель'
+                placeholder={t('Модель')}
                 component={InputComponent}
               />
               <Field
                 name='autoInfo.year'
                 type='text'
-                placeholder='Год выпуска'
+                placeholder={t('Год выпуска')}
                 component={InputComponent}
               />
               <Field
                 name='autoInfo.bodyNumber'
                 type='text'
-                placeholder='Номер кузова'
+                placeholder={t('Номер кузова')}
                 component={InputComponent}
               />
               <Field
                 name='autoInfo.engine.volume'
                 type='text'
-                placeholder='Объем двигателя'
+                placeholder={t('Объем двигателя')}
                 component={InputComponent}
               />
               <Field
                 name='autoInfo.engine.specification'
                 type='text'
-                placeholder='Тип двигателя'
+                placeholder={t('Тип двигателя')}
                 component={InputComponent}
               />
             </section>
             <section className='problems-info-form-section'>
-              <h3>Жалобы и неисправности</h3>
+              <h3>{t('Жалобы и неисправности')}</h3>
 
               <Field
                 name='problems'
-                placeholder='Описание неисправностей'
+                placeholder={t('Описание неисправностей')}
                 component={TextAreaComponent}
               />
             </section>
             <section className='result-info-form-section'>
-              <h3>Перечень выполненных работ</h3>
+              <h3>{t('Перечень выполненных работ')}</h3>
 
               <Field
                 name='result'
-                placeholder='Описание выполненных работ'
+                placeholder={t('Описание выполненных работ')}
                 component={TextAreaComponent}
               />
             </section>
             <section className='navigate-info-form-section'>
               <Field
                 name='navigation.worker'
-                placeholder='Мастер'
+                placeholder={t('Мастер')}
                 component={InputComponent}
               />
             </section>
@@ -162,7 +157,7 @@ export const AddNewClientForm: React.FC = () => {
                 value={values.inProgress}
                 onChange={handleChange}
               >
-                Добавить в выполняемые
+                {t('Добавить в выполняемые')}
               </Checkbox>
             </div>
 
@@ -174,7 +169,7 @@ export const AddNewClientForm: React.FC = () => {
               disabled={isSubmitting}
               style={{ marginTop: '20px' }}
             >
-              Добавить
+              {t('Добавить')}
             </Button>
           </form>
         )}

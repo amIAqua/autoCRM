@@ -1,10 +1,11 @@
 import React from 'react'
-import { Menu } from 'antd'
+import { Button, Menu } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { useLocation, useHistory, NavLink } from 'react-router-dom'
 import { findSelectedKey, items } from './navbar-keys-helpers'
 import { useAuthentication } from '../../utils/useAuthentication'
 import { authService } from '../../store/services/AuthenticationService'
+import { useTranslation } from 'react-i18next'
 
 export const Navbar: React.FC = () => {
   // TODO useLocation type !!
@@ -15,8 +16,14 @@ export const Navbar: React.FC = () => {
     findSelectedKey(items, location)
   )
 
+  const { i18n, t } = useTranslation()
+
   const logoutHandler = () => {
     logout()
+  }
+
+  const changeLanguageHandler = (language: string) => {
+    i18n.changeLanguage(language)
   }
 
   React.useEffect(() => {
@@ -31,11 +38,11 @@ export const Navbar: React.FC = () => {
           icon={<ArrowLeftOutlined />}
           onClick={() => history.goBack()}
         >
-          Назад
+          {t('Назад')}
         </Menu.Item>
         {items.map((_item) => (
           <Menu.Item key={_item.key}>
-            <NavLink to={_item.path}>{_item.label}</NavLink>
+            <NavLink to={_item.path}>{t(_item.label)}</NavLink>
           </Menu.Item>
         ))}
         {authService.authenticationStatus ? (
@@ -44,9 +51,11 @@ export const Navbar: React.FC = () => {
             icon={<ArrowLeftOutlined />}
             onClick={logoutHandler}
           >
-            Выход
+            {t('Выход')}
           </Menu.Item>
         ) : null}
+        <Button onClick={() => changeLanguageHandler('en')}>EN</Button>
+        <Button onClick={() => changeLanguageHandler('ru')}>RU</Button>
       </Menu>
     </div>
   )

@@ -5,6 +5,7 @@ import { layout, tailLayout } from '../form-config'
 import { authService } from '../../../store/services/AuthenticationService'
 import { useHistory } from 'react-router-dom'
 import { useAuthentication } from '../../../utils/useAuthentication'
+import { useTranslation } from 'react-i18next'
 
 type Values = {
   userId: string
@@ -13,6 +14,7 @@ type Values = {
 
 export const LoginForm: FC = observer(() => {
   const { login } = useAuthentication()
+  const { t } = useTranslation()
   const history = useHistory()
   const form = useRef<any>()
   const onFinish = (values: Values) => {
@@ -45,7 +47,7 @@ export const LoginForm: FC = observer(() => {
         </Form.Item>
 
         <Form.Item
-          label='Пароль'
+          label={t('Пароль')}
           name='password'
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
@@ -54,7 +56,7 @@ export const LoginForm: FC = observer(() => {
 
         <Form.Item {...tailLayout}>
           <Button type='primary' htmlType='submit'>
-            Войти
+            {t('Войти')}
           </Button>
         </Form.Item>
       </Form>
