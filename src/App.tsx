@@ -19,6 +19,7 @@ import { PricesLayout } from './layouts/PricesLayout/PricesLayout'
 import { CostsLayout } from './layouts/CostsLayout/CostsLayout'
 import { AuthLayout } from './layouts/AuthLayout/AuthLayout'
 import { useAuthentication } from './utils/useAuthentication'
+import { SideMenu } from './components/SideMenu/SideMenu'
 
 export const App: React.FC = () => {
   const loading = useSelector((state: RootAppState) => loadingSelector(state))
@@ -30,8 +31,10 @@ export const App: React.FC = () => {
   }, [])
 
   return (
-    <div className='main-layout'>
-      <Navbar />
+    <div className='main-layout' style={{ display: 'flex' }}>
+      {/* <Navbar /> */}
+      <SideMenu />
+
       {loading && location.pathname === '/specify' ? <Loader /> : null}
       <div className='Router container'>
         <Switch>

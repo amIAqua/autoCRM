@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Menu } from 'antd'
+import { Button, Menu, Row } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { useLocation, useHistory, NavLink } from 'react-router-dom'
 import { findSelectedKey, items } from './navbar-keys-helpers'
@@ -31,7 +31,7 @@ export const Navbar: React.FC = () => {
   }, [location])
 
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       <Menu mode='horizontal' selectedKeys={[selectedKey!]}>
         <Menu.Item
           key='return'
