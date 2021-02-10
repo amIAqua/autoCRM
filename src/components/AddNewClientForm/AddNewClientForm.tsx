@@ -153,6 +153,7 @@ export const AddNewClientForm: React.FC = () => {
 
             <div>
               <Checkbox
+                className='add-checkbox'
                 name='inProgress'
                 value={values.inProgress}
                 onChange={handleChange}

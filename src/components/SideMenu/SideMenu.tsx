@@ -6,8 +6,6 @@ import { authService } from '../../store/services/AuthenticationService'
 import { useAuthentication } from '../../utils/useAuthentication'
 import { useTranslation } from 'react-i18next'
 import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
   ArrowLeftOutlined,
   CommentOutlined,
   LogoutOutlined,
@@ -16,7 +14,6 @@ import {
 const { SubMenu } = Menu
 
 export const SideMenu: FC = () => {
-  const [collapsed, setCollapsed] = useState(false)
   const { logout } = useAuthentication()
   const location: any = useLocation()
   const history = useHistory()
@@ -24,10 +21,6 @@ export const SideMenu: FC = () => {
   const [selectedKey, setSelectedKey] = useState(
     findSelectedKey(items, location)
   )
-
-  const toggleCollapsed = () => {
-    setCollapsed((prev) => !prev)
-  }
 
   const logoutHandler = () => {
     logout()
@@ -44,12 +37,7 @@ export const SideMenu: FC = () => {
   const renderMenu = () => {
     return (
       <div style={{ width: '256px' }}>
-        <Menu
-          selectedKeys={[selectedKey!]}
-          mode='inline'
-          theme='dark'
-          inlineCollapsed={collapsed}
-        >
+        <Menu selectedKeys={[selectedKey!]} mode='inline' theme='dark'>
           <Menu.Item
             key='return'
             icon={<ArrowLeftOutlined />}
@@ -89,12 +77,6 @@ export const SideMenu: FC = () => {
             </Menu.Item>
           ) : null}
         </Menu>
-        <Button
-          type='primary'
-          onClick={toggleCollapsed}
-          style={{ margin: '20px 20px' }}
-          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        ></Button>
       </div>
     )
   }

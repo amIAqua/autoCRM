@@ -34,8 +34,10 @@ export const CostsList: FC<Props> = observer(({ _id, currentCase }) => {
           key={item!._id}
           style={{ display: 'flex', justifyContent: 'space-between' }}
         >
-          <h4>{t(item!.text)}</h4>
-          <h4>{formatedPrice(item!.price)}</h4>
+          <h4 style={{ color: 'rgb(175, 175, 175)' }}>{t(item!.text)}</h4>
+          <h4 style={{ color: 'rgb(175, 175, 175)' }}>
+            {formatedPrice(item!.price)}
+          </h4>
           {!currentCase.costed ? (
             <Button
               size='small'
@@ -62,11 +64,11 @@ export const CostsList: FC<Props> = observer(({ _id, currentCase }) => {
         {costsService.caseCostsList.length ? (
           placeCostsListData()
         ) : (
-          <p>{t('Смета пуста')} :(</p>
+          <p style={{ color: 'rgb(175, 175, 175)' }}>{t('Смета пуста')} :(</p>
         )}
 
         <Divider />
-        <h3>
+        <h3 style={{ color: 'rgb(175, 175, 175)' }}>
           {t('Итого')}: {costsService.totalCasePrice}
         </h3>
         <Divider />

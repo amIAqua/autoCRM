@@ -4,7 +4,17 @@
   margin-top: 20px;
   width: 700px;
   padding: 5px;
+  color: rgb(175, 175, 175);
+  background: #001529;
   border-radius: 10px;
+}
+
+.ant-card-head-title {
+  color: rgb(175, 175, 175);
+}
+
+.details-case-card h2 {
+  color: rgb(175, 175, 175);
 }
 
 .card-row {

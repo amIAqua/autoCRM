@@ -5,4 +5,17 @@
   border-radius: 10px;
   padding: 5px;
   padding-left: 15px;
+  background: #001529;
+}
+
+.case-card b {
+  color: rgb(175, 175, 175);
+}
+
+.ant-descriptions-title {
+  color: rgb(175, 175, 175);
+}
+
+.ant-descriptions-item-container .ant-descriptions-item-label {
+  color: rgb(175, 175, 175);
 }

@@ -24,25 +24,9 @@ export const useCostsList = () => {
         {currentCase.costed ? (
           costsService.caseCostsList.map((item: priceListItemType) => {
             return (
-              <div
-                key={item!._id}
-                style={{ display: 'flex', justifyContent: 'space-between' }}
-              >
+              <div className='costs-list-item' key={item!._id}>
                 <h4>{item!.text}</h4>
                 <h4>{formatedPrice(item!.price)}</h4>
-                {/* <Button
-              size='small'
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                borderRadius: '5px',
-                color: 'red',
-                border: '1px solid red',
-              }}
-              onClick={() => deleteItemHandler(item!._id)}
-            >
-              <p >&times;</p>
-            </Button> */}
               </div>
             )
           })

@@ -5,4 +5,22 @@
   width: 700px;
   padding: 5px;
   border-radius: 10px;
+  background: #001529;
+}
+
+.costs-case-card b {
+  color: rgb(175, 175, 175);
+}
+
+.ant-row .card-row {
+  color: rgb(175, 175, 175);
+}
+
+.costs-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.costs-list-item h4 {
+  color: rgb(175, 175, 175);
 }
