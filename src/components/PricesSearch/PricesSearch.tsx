@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import { ChangeEvent } from 'react'
 import { Input } from 'antd'
 import { fuse } from '../../utils/FuseSearch'
 import { useTranslation } from 'react-i18next'

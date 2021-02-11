@@ -1,5 +1,4 @@
 import { Row } from 'antd'
-import React from 'react'
 import { priceListItemType } from '../../../store/types/pricesService.types'
 
 type Props = {

@@ -1,4 +1,3 @@
-import React from 'react'
 import { errorsType, initialValues } from './case-form-config'
 import { caseType } from '../../store/types/casesReducer.types'
 import {

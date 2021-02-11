@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AllCasesList } from '../../components/AllCasesList/AllCasesList'
 import { Loader } from '../../components/Loader/Loader'
@@ -24,7 +24,7 @@ export const CompletedCasesLayout: React.FC = () => {
   const { errorMessage } = useMessages()
   const dispatch = useDispatch()
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(getAllCompletedCases())
 
     if (error) {

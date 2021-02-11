@@ -1,16 +1,7 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Badge, Button } from 'antd'
+import { Badge, Button } from 'antd'
 import { allCasesListType } from '../../store/types/casesReducer.types'
 import { useTranslation } from 'react-i18next'
-
-const gridStyle: React.CSSProperties = {
-  width: '25%',
-  textAlign: 'center',
-  fontWeight: 'bold',
-  margin: '10px 10px',
-  cursor: 'pointer',
-}
 
 type Props = {
   contain: {

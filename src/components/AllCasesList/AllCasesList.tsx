@@ -1,4 +1,3 @@
-import React from 'react'
 import { caseType } from '../../store/types/casesReducer.types'
 import { CasesListItem } from './CasesListItem/CasesListItem'
 

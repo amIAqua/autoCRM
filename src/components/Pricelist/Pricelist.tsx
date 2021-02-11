@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { observer } from 'mobx-react'
 import { pricelistService } from '../../store/services/PricelistService'
 import { useTableColumns } from './pricelist-table-config'
@@ -13,7 +13,7 @@ export const Pricelist: React.FC = observer(() => {
   const { pricelist } = usePricelist()
   const tableColumns = useTableColumns()
 
-  React.useEffect(() => {
+  useEffect(() => {
     fuse.searchToggler()
   }, [fuse.searchQueryGetter])
 

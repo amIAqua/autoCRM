@@ -1,4 +1,3 @@
-import React from 'react'
 import { SpecifyCards } from '../../components/SpecifyCards/SpecifyCards'
 import { useContainElements } from '../../utils/useContainElements'
 

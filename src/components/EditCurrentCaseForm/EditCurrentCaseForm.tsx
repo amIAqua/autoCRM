@@ -1,4 +1,3 @@
-import React from 'react'
 import { caseType } from '../../store/types/casesReducer.types'
 import { Formik, FormikHelpers, Field, FormikErrors } from 'formik'
 import { Input, Button } from 'antd'

@@ -1,5 +1,5 @@
-import React from 'react'
-import { match, useHistory, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { DetailCaseCard } from '../../components/DetailCaseCard/DetailCaseCard'
 import { RootAppState } from '../../store'
@@ -32,11 +32,11 @@ export const DetailCaseLayout: React.FC = () => {
   const history = useHistory()
   const { _id }: Params = useParams()
 
-  React.useEffect((): any => {
+  useEffect((): any => {
     dispatch(getCaseDetails(_id))
   }, [dispatch, _id])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (error) {
       stopLoading(dispatch)
       errorMessage(error.message)

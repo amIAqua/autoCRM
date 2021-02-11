@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Menu, Row } from 'antd'
+import { useState, useEffect } from 'react'
+import { Button, Menu } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import { useLocation, useHistory, NavLink } from 'react-router-dom'
 import { findSelectedKey, items } from './navbar-keys-helpers'
@@ -12,7 +12,7 @@ export const Navbar: React.FC = () => {
   const { logout } = useAuthentication()
   const location: any = useLocation()
   const history = useHistory()
-  const [selectedKey, setSelectedKey] = React.useState(
+  const [selectedKey, setSelectedKey] = useState(
     findSelectedKey(items, location)
   )
 
@@ -26,7 +26,7 @@ export const Navbar: React.FC = () => {
     i18n.changeLanguage(language)
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedKey(findSelectedKey(items, location))
   }, [location])
 

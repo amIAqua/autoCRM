@@ -1,4 +1,3 @@
-import React from 'react'
 import { Pricelist } from '../../components/Pricelist/Pricelist'
 import { PricesSearch } from '../../components/PricesSearch/PricesSearch'
 

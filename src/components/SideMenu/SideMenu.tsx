@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { Menu, Button, Divider } from 'antd'
+import { Menu } from 'antd'
 import { findSelectedKey, items } from '../Navbar/navbar-keys-helpers'
 import { NavLink, useHistory, useLocation } from 'react-router-dom'
 import { authService } from '../../store/services/AuthenticationService'
@@ -53,7 +53,7 @@ export const SideMenu: FC = () => {
             </Menu.Item>
           ))}
           <Menu.Divider />
-          <SubMenu key='lang' icon={<CommentOutlined />} title='Язык'>
+          <SubMenu key='lang' icon={<CommentOutlined />} title={t('Язык')}>
             <Menu.Item
               key='lang_ru'
               onClick={() => changeLanguageHandler('ru')}

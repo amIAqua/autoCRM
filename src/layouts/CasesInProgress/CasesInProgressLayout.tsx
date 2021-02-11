@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootAppState } from '../../store'
 import { allCasesListType } from '../../store/types/casesReducer.types'
@@ -24,7 +24,7 @@ export const CasesInProgressLayout: React.FC = () => {
   const { errorMessage } = useMessages()
   const dispatch = useDispatch()
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(getAllCasesInProgress())
 
     if (error) {

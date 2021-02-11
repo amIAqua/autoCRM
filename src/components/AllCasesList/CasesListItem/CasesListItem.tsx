@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button, Descriptions, Divider } from 'antd'
 import { NavLink } from 'react-router-dom'
 import { getFullName } from '../../../utils/name_utils'

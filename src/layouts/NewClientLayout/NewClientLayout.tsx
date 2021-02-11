@@ -1,4 +1,3 @@
-import React from 'react'
 import { AddNewClientForm } from '../../components/AddNewClientForm/AddNewClientForm'
 
 export const NewClientLayout: React.FC = () => {

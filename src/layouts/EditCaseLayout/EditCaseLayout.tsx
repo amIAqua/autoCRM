@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { match } from 'react-router-dom'
 import { currentCaseSelector } from '../../store/selectors'
@@ -24,7 +24,7 @@ export const EditCaseLayout: React.FC<Props> = ({ match }) => {
   // getting params _id
   const _id = match.params._id
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (checkCurrentCaseStatus(currentEditedCase._id!, _id)) return
     dispatch(getCaseDetails(_id))
   }, [])
