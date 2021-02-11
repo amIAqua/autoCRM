@@ -52,3 +52,15 @@ export const separateCases = (allCasesList: allCasesListType) => {
 // date generator
 
 export const getDate = () => new Date().toLocaleDateString()
+
+const options = {
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  hour12: false,
+}
+
+export const dateFormatter = (date: Date) =>
+  `${date.toLocaleString('en-US', options)}`

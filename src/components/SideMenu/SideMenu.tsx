@@ -5,6 +5,7 @@ import { NavLink, useHistory, useLocation } from 'react-router-dom'
 import { authService } from '../../store/services/AuthenticationService'
 import { useAuthentication } from '../../utils/useAuthentication'
 import { useTranslation } from 'react-i18next'
+import { DateTime } from '../DateTime/DateTime'
 import {
   ArrowLeftOutlined,
   CommentOutlined,
@@ -45,13 +46,13 @@ export const SideMenu: FC = () => {
           >
             {t('Назад')}
           </Menu.Item>
-          <Divider />
+          <Menu.Divider />
           {items.map((_item) => (
             <Menu.Item key={_item.key} icon={_item.icon}>
               <NavLink to={_item.path}>{t(_item.label)}</NavLink>
             </Menu.Item>
           ))}
-          <Divider />
+          <Menu.Divider />
           <SubMenu key='lang' icon={<CommentOutlined />} title='Язык'>
             <Menu.Item
               key='lang_ru'
@@ -66,7 +67,7 @@ export const SideMenu: FC = () => {
               EN
             </Menu.Item>
           </SubMenu>
-          <Divider />
+          <Menu.Divider />
           {authService.authenticationStatus ? (
             <Menu.Item
               key='logout'
@@ -77,6 +78,7 @@ export const SideMenu: FC = () => {
             </Menu.Item>
           ) : null}
         </Menu>
+        <DateTime />
       </div>
     )
   }
